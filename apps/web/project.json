@@ -40,7 +40,7 @@
     "serve": {
       "executor": "@nrwl/web:dev-server",
       "options": {
-        "buildTarget": "web:build",
+        "buildTarget": "web:build:development",
         "hmr": true,
         "proxyConfig": "apps/web/proxy.conf.json"
       },
