@@ -7,7 +7,7 @@ export const Serialize = (dto: ClassConstructor<unknown>) =>
   UseInterceptors(new SerializeInterceptor(dto));
 
 export class SerializeInterceptor implements NestInterceptor {
-  constructor(private dto: ClassConstructor<unknown>) {}
+  constructor(private dtoClass: ClassConstructor<unknown>) {}
 
   intercept(
     _context: ExecutionContext,
@@ -17,7 +17,7 @@ export class SerializeInterceptor implements NestInterceptor {
       map(
         (response: ResponseDto<unknown>): ResponseDto<unknown> => ({
           message: response.message,
-          result: plainToInstance(this.dto, response.result, {
+          result: plainToInstance(this.dtoClass, response.result, {
             excludeExtraneousValues: true,
             exposeUnsetFields: true,
             exposeDefaultValues: true,
