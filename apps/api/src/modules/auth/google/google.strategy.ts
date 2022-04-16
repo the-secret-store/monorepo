@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { CreateUserInputDto } from '@the-secret-store/api-interfaces/dtos/user';
 import { Profile, Strategy as GooglePassportOauthStrategy } from 'passport-google-oauth20';
-import { AuthConfig } from '../../../config';
+import { AuthConfig, RootConfig } from '../../../config';
 import { AuthService } from '../auth.service';
 
 @Injectable()
@@ -12,7 +12,9 @@ export class GoogleStrategy extends PassportStrategy(GooglePassportOauthStrategy
     super({
       clientID: configService.get<AuthConfig>('auth').google.clientId,
       clientSecret: configService.get<AuthConfig>('auth').google.clientSecret,
-      callbackURL: 'http://localhost:5000/auth/google/success',
+      callbackURL: `http://localhost:${
+        configService.get<RootConfig>('root').port
+      }/auth/google/success`,
       scope: ['email', 'profile'],
     });
   }
