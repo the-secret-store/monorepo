@@ -8,7 +8,7 @@ import { AuthPayload } from './token.strategy';
 export class AuthTokenService {
   constructor(private jwtService: JwtService, private readonly logger: Logger) {}
 
-  login(user: User) {
+  generateToken(user: User) {
     const { avatarUrl, displayName, email, id }: AuthPayload = user;
 
     this.logger.verbose(

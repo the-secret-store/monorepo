@@ -20,7 +20,7 @@ export class GoogleAuthController {
   @Get('success')
   @UseGuards(GoogleAuthGuard)
   success(@CurrentUser() user: User) {
-    const token = this.authTokenService.login(user);
+    const token = this.authTokenService.generateToken(user);
     return { message: 'Login successful', token };
   }
 }
