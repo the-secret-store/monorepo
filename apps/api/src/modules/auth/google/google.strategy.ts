@@ -28,7 +28,7 @@ export class GoogleStrategy extends PassportStrategy(GooglePassportOauthStrategy
       avatarUrl: photos[0].value,
     };
 
-    const user = await this.authService.handleOauthLogin(userProfile);
+    const user = await this.authService.findOrCreateUser(userProfile);
 
     return user;
   }

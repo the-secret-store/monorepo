@@ -6,7 +6,7 @@ import { UserService } from '../user/user.service';
 export class AuthService {
   constructor(private readonly userService: UserService) {}
 
-  async handleOauthLogin(userProfile: CreateUserInputDto) {
+  async findOrCreateUser(userProfile: CreateUserInputDto) {
     const user = await this.userService.findByEmail(userProfile.email);
 
     if (!user) {
