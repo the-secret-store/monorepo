@@ -19,7 +19,7 @@ export class GoogleStrategy extends PassportStrategy(GooglePassportOauthStrategy
     });
   }
 
-  async validate(_accessToken: string, _refreshToken: string, profile: Profile) {
+  async validate(_accessToken: never, _refreshToken: never, profile: Profile) {
     const { name, emails, photos } = profile;
 
     const userProfile: CreateUserInputDto = {
