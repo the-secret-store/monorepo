@@ -15,7 +15,7 @@ export class AuthTokenService {
       `User ${user.displayName} has logged in: ${prettyPrint(
         user as unknown as Record<string, string>
       )}`,
-      'AuthTokenService'
+      AuthTokenService.name
     );
 
     return this.jwtService.sign({ avatarUrl, displayName, email, id });

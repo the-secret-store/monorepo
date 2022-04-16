@@ -15,7 +15,7 @@ export class TeamController {
 
   @Post()
   async create(@CurrentUser() user: AuthPayload, @Body() createTeamDto: CreateTeamInputDto) {
-    this.logger.verbose(user, 'TeamController');
+    this.logger.verbose(user, TeamController.name);
     const team = await this.teamService.create(user.id, createTeamDto);
     return { message: 'Team created successfully', result: team };
   }

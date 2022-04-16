@@ -19,7 +19,7 @@ export class AuthTokenStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: AuthPayload) {
-    Logger.verbose(prettyPrint(payload), 'AuthTokenStrategy');
+    Logger.verbose(prettyPrint(payload), AuthTokenStrategy.name);
     return payload;
   }
 }
