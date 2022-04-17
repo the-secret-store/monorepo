@@ -4,7 +4,6 @@ import {
   CreateProjectInputDto,
   UpdateSecretsInputDto,
 } from '@the-secret-store/api-interfaces/dtos/project';
-import { ObjectId } from 'mongodb';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
 import { UserService } from '../user/user.service';
 import { Project } from './project.entity';
@@ -48,7 +47,7 @@ export class ProjectService {
 
     project.backup = project.secrets;
     project.secrets = secrets;
-    project.lastUpdatedBy = ObjectId(userId);
+    project.lastUpdatedBy = user.id;
 
     await this.repo.save(project);
 

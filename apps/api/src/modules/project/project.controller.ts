@@ -24,8 +24,7 @@ export class ProjectController {
   @Patch(':projectId')
   async updateSecrets(
     @CurrentUser() user: AuthPayload,
-    @Param('projectId')
-    projectId: ObjectIdType,
+    @Param('projectId') projectId: ObjectIdType,
     @Body('secrets') secrets: Record<string, string>
   ) {
     if (!isMongoId(projectId)) throw new BadRequestException({ message: 'Not a valid project id' });
