@@ -40,12 +40,8 @@ export class User {
 
   @BeforeInsert()
   protected onCreate() {
-    if (!this.projects) {
-      this.projects = [];
-    }
+    if (!this.projects) this.projects = [];
 
-    if (!this.teams) {
-      this.teams = [];
-    }
+    if (!this.teams) this.teams = [];
   }
 }
