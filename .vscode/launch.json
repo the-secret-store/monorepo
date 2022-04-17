@@ -2,7 +2,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "API",
+      "name": "Launch API in debug mode",
+      "request": "launch",
+      "runtimeArgs": ["start", "api"],
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+    {
+      "name": "Launch API in terminal",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "npm",
