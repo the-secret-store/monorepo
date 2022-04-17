@@ -20,7 +20,7 @@ export class UserService {
     return this.repo.save(user);
   }
 
-  async addProject(user: ObjectIdType | string | User, projectId: ObjectIdType) {
+  async addProject(user: ObjectIdType | Email | User, projectId: ObjectIdType) {
     if (user instanceof ObjectIdType) user = await this.findById(user);
     else if (typeof user === 'string') user = await this.findByEmail(user);
 
@@ -32,7 +32,9 @@ export class UserService {
     return this.repo.findOne({ where: id });
   }
 
-  findByEmail(email: string) {
+  findByEmail(email: Email) {
     return this.repo.findOne({ where: { email } });
   }
 }
+
+type Email = string;
