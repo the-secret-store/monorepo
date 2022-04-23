@@ -21,9 +21,8 @@ export class UserService {
     return this.repo.save(user);
   }
 
-  async addProject(user: ObjectIdType | Email | User, projectId: ObjectIdType) {
-    if (user instanceof ObjectIdType) user = await this.findById(user);
-    else if (typeof user === 'string') user = await this.findByEmail(user);
+  async addProject(user: ObjectIdType | User, projectId: ObjectIdType) {
+    if (!(user instanceof User)) user = await this.findById(user);
 
     user.projects.push(projectId);
     return this.repo.save(user);
