@@ -1,6 +1,6 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { docTags } from '../../../constants/api-tags';
+import { docTags, UserAgent } from '../../../constants';
 import { User } from '../../user/user.entity';
 import { CurrentUser } from '../decorators/current-user.decorator';
 import { AuthTokenService } from '../token/token.service';
@@ -20,7 +20,7 @@ export class GoogleAuthController {
   @Get('success')
   @UseGuards(GoogleAuthGuard)
   success(@CurrentUser() user: User) {
-    const token = this.authTokenService.generateToken(user);
+    const token = this.authTokenService.generateToken(user, UserAgent.Browser);
     return { message: 'Login successful', token };
   }
 }

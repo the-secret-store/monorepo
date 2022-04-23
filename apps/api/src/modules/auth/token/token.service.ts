@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { UserAgent } from '../../../constants';
 import { AuthConfig } from '../../../config';
 import { prettyPrint } from '../../../utils';
 import { User } from '../../user/user.entity';
@@ -33,5 +34,3 @@ export class AuthTokenService {
     );
   }
 }
-
-type UserAgent = 'browser' | 'cli';
