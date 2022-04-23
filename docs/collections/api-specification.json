@@ -154,6 +154,23 @@
       }
     },
     "/project/{projectId}": {
+      "get": {
+        "operationId": "ProjectController_getSecrets",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "project"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
       "patch": {
         "operationId": "ProjectController_updateSecrets",
         "parameters": [],

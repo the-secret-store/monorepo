@@ -32,6 +32,7 @@ export class ProjectService {
   }
 
   async updateSecrets({ userId, projectId, secrets }: UpdateSecretsInputDto) {
+    this.checkAccess(userId, projectId);
     const project = await this.findById(projectId);
 
     if (!project)
@@ -39,18 +40,31 @@ export class ProjectService {
         message: 'The given project id is either invalid or the project no longer exist',
       });
 
-    const user = await this.userService.findById(userId);
-
-    if (!user.projects.some(p => p === project.id)) {
-      throw new ForbiddenException({ message: "You don't have access to this project" });
-    }
-
     project.backup = project.secrets;
     project.secrets = secrets;
-    project.lastUpdatedBy = user.id;
+    project.lastUpdatedBy = userId;
 
     await this.repo.save(project);
 
     return project;
+  }
+
+  async getSecrets(userId: ObjectIdType, projectId: ObjectIdType) {
+    this.checkAccess(userId, projectId);
+    const project = await this.findById(projectId);
+
+    return project.secrets;
+  }
+
+  /**
+   * Checks if the user has access to the project,
+   * if not, throws an exception and terminates the request
+   */
+  private async checkAccess(userId: ObjectIdType, projectId: ObjectIdType) {
+    const user = await this.userService.findById(userId);
+
+    if (!user.projects.some(p => p === projectId)) {
+      throw new ForbiddenException({ message: "You don't have access to this project" });
+    }
   }
 }
