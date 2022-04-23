@@ -14,7 +14,6 @@ import { AuthTokenStrategy } from './token.strategy';
           secret: jwtConfig.secret,
           signOptions: {
             issuer: jwtConfig.issuer,
-            algorithm: 'ES256',
           },
         };
       },
