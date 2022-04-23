@@ -23,8 +23,6 @@ export class AuthService {
   }
 
   async generateTokenForCli(user: User) {
-    const token = this.authTokenService.generateToken(user, UserAgent.CLI);
-    await this.userService.addOrUpdateAccessToken(user.id, token);
-    return token;
+    return this.authTokenService.generateToken(user, UserAgent.CLI);
   }
 }

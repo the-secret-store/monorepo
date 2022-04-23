@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserInputDto } from '@the-secret-store/api-interfaces/dtos/user';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
+import { Deprecated } from '../../decorators';
 import { User } from './user.entity';
 
 @Injectable()
@@ -36,8 +37,9 @@ export class UserService {
     return this.repo.findOne({ where: { email } });
   }
 
+  @Deprecated('storing user sessions in a database is a huge security flaw')
   async addOrUpdateAccessToken(userId: ObjectIdType, accessToken: string) {
-    const user = await this.findById(userId);
+    const user = await this.repo.findOne({ where: { id: userId } });
     user.accessToken = accessToken;
     return this.repo.save(user);
   }
