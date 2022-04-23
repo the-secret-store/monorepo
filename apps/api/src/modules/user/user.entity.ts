@@ -39,7 +39,7 @@ export class User {
   updatedAt: Date;
 
   @Column()
-  authToken: string;
+  accessToken: string;
 
   @BeforeInsert()
   protected onCreate() {

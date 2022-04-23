@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
-import { prettyPrint } from '../../../utils';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { AuthConfig } from '../../../config';
+import { prettyPrint } from '../../../utils';
 import { User } from '../../user/user.entity';
 
 export type AuthPayload = Pick<User, 'id' | 'avatarUrl' | 'displayName' | 'email'>;

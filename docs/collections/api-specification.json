@@ -45,42 +45,29 @@
         ]
       }
     },
-    "/user/{id}": {
+    "/auth/generate-token": {
       "get": {
-        "operationId": "UserController_findOne",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "operationId": "AuthController_generateToken",
+        "parameters": [],
         "responses": {
           "200": {
             "description": ""
           }
         },
         "tags": [
-          "user"
+          "auth"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
         ]
       }
     },
-    "/user/generate-token/{id}": {
+    "/user/generate-token": {
       "get": {
-        "operationId": "UserController_generateToken",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "operationId": "UserController_redirect",
+        "parameters": [],
         "responses": {
           "200": {
             "description": ""
