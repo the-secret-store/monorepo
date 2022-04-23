@@ -1,20 +1,28 @@
 import { ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   CreateProjectInputDto,
   UpdateSecretsInputDto,
 } from '@the-secret-store/api-interfaces/dtos/project';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
+import { MiscConfig } from '../../config';
+import { EncryptionService } from '../../utils/EncryptionService';
 import { UserService } from '../user/user.service';
 import { Project } from './project.entity';
 
 @Injectable()
 export class ProjectService {
+  private readonly encryptionEngine: EncryptionService;
   constructor(
     @InjectRepository(Project) private readonly repo: Repository<Project>,
     private readonly userService: UserService,
-    private readonly logger: Logger
-  ) {}
+    private readonly logger: Logger,
+    private readonly configService: ConfigService
+  ) {
+    const { encryptionKey } = this.configService.get<MiscConfig>('misc');
+    this.encryptionEngine = new EncryptionService(encryptionKey, 'aes-256-gcm');
+  }
 
   async create(userId: ObjectIdType, createProjectDto: CreateProjectInputDto) {
     const project = this.repo.create({ ...createProjectDto, createdBy: userId });
@@ -41,7 +49,7 @@ export class ProjectService {
       });
 
     project.backup = project.secrets;
-    project.secrets = secrets;
+    project.secrets = this.encryptionEngine.encryptValues(secrets);
     project.lastUpdatedBy = userId;
 
     await this.repo.save(project);
@@ -53,7 +61,7 @@ export class ProjectService {
     this.checkAccess(userId, projectId);
     const project = await this.findById(projectId);
 
-    return project.secrets;
+    return this.encryptionEngine.decryptValues(project.secrets);
   }
 
   /**
