@@ -20,7 +20,7 @@ export class ProjectService {
     private readonly logger: Logger,
     private readonly configService: ConfigService
   ) {
-    const { encryptionKey } = this.configService.get<MiscConfig>('misc');
+    const encryptionKey = this.configService.get<MiscConfig['encryptionKey']>('misc.encryptionKey');
     this.encryptionEngine = new EncryptionService(encryptionKey, 'aes-256-gcm');
   }
 
