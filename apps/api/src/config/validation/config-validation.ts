@@ -56,6 +56,9 @@ class EnvironmentVariables {
 
   @IsString()
   JWT_VALIDITY_BROWSER?: string = '24h';
+
+  @IsString()
+  SECRETS_ENCRYPTION_KEY?: string;
 }
 
 export function validateConfig(config: Record<string, unknown>) {

@@ -19,6 +19,8 @@ declare global {
       JWT_ISSUER: string;
       JWT_VALIDITY_BROWSER: string;
       JWT_VALIDITY_CLI: string;
+
+      SECRETS_ENCRYPTION_KEY: string;
     }
   }
 }
