@@ -52,7 +52,10 @@ class EnvironmentVariables {
   JWT_ISSUER?: string = 'the-secret-store-hq';
 
   @IsString()
-  JWT_VALIDITY?: string = '365d';
+  JWT_VALIDITY_CLI?: string = '365d';
+
+  @IsString()
+  JWT_VALIDITY_BROWSER?: string = '24h';
 }
 
 export function validateConfig(config: Record<string, unknown>) {

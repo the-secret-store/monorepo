@@ -4,7 +4,7 @@ export const authConfig = registerAs('auth', () => ({
   jwt: {
     secret: process.env.JWT_SECRET,
     issuer: process.env.JWT_ISSUER,
-    validity: process.env.JWT_VALIDITY,
+    validity: { browser: process.env.JWT_VALIDITY_BROWSER, cli: process.env.JWT_VALIDITY_CLI },
   },
 
   google: {
