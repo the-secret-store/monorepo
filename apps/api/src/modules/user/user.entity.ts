@@ -38,6 +38,9 @@ export class User {
   @UpdateDateColumn({ type: 'time with time zone' })
   updatedAt: Date;
 
+  @Column()
+  authToken: string;
+
   @BeforeInsert()
   protected onCreate() {
     if (!this.projects) this.projects = [];

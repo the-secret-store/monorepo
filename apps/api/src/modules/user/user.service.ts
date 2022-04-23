@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserInputDto } from '@the-secret-store/api-interfaces/dtos/user';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
+import { generateHexString } from '../../utils';
 import { User } from './user.entity';
 
 @Injectable()
@@ -26,6 +27,14 @@ export class UserService {
 
     user.projects.push(projectId);
     return this.repo.save(user);
+  }
+
+  async generateToken(user: ObjectIdType | User) {
+    if (!(user instanceof User)) user = await this.findById(user);
+    const token = generateHexString(48);
+    user.authToken = token;
+    this.repo.save(user);
+    return token;
   }
 
   findById(id: ObjectIdType) {
