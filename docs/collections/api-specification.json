@@ -140,7 +140,7 @@
         ]
       }
     },
-    "/project/{projectId}": {
+    "/project/secrets/{projectId}": {
       "get": {
         "operationId": "ProjectController_getSecrets",
         "parameters": [],

@@ -21,14 +21,14 @@ export class ProjectController {
     return { message: 'Project created successfully', result: project };
   }
 
-  @Get(':projectId')
+  @Get('/secrets/:projectId')
   async getSecrets(@CurrentUser() user: AuthPayload, @Param('projectId') projectId: ObjectIdType) {
     if (!isMongoId(projectId)) throw new BadRequestException({ message: 'Invalid project id' });
     const secrets = await this.projectService.getSecrets(user.id, projectId);
     return { message: 'Project secrets retrieved successfully', result: secrets };
   }
 
-  @Patch(':projectId')
+  @Patch('/secrets/:projectId')
   async updateSecrets(
     @CurrentUser() user: AuthPayload,
     @Param('projectId') projectId: ObjectIdType,
