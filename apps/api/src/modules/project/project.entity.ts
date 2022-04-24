@@ -32,6 +32,12 @@ export class Project {
   @Column({ type: 'array', default: [] })
   specialAccessTokens: ObjectIdType[];
 
+  @Column({ type: 'array', default: [] })
+  members: ObjectIdType[];
+
+  @Column({ type: 'array', default: [] })
+  collaborators: ObjectIdType[];
+
   @Column({ type: 'string' })
   lastUpdatedBy: ObjectIdType;
 
@@ -51,5 +57,8 @@ export class Project {
   @BeforeInsert()
   protected beforeInsert() {
     if (!this.owner) this.owner = this.createdBy;
+    if (!this.collaborators) this.collaborators = [];
+    if (!this.specialAccessTokens) this.specialAccessTokens = [];
+    if (!this.members) this.members = [];
   }
 }
