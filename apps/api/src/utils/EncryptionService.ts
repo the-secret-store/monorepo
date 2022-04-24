@@ -13,6 +13,8 @@ export class EncryptionService {
   ) {}
 
   encryptValues(keyPlainTextPair: Record<string, string>) {
+    if (!keyPlainTextPair) return {};
+
     return Object.fromEntries(
       Object.entries(keyPlainTextPair).map(([key, value]) => {
         return [key, this.encrypt(value)];
@@ -21,6 +23,8 @@ export class EncryptionService {
   }
 
   decryptValues(keyCipherTextPair: Record<string, string>) {
+    if (!keyCipherTextPair) return {};
+
     return Object.fromEntries(
       Object.entries(keyCipherTextPair).map(([key, value]) => {
         return [key, this.decrypt(value)];
