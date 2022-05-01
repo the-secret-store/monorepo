@@ -32,10 +32,10 @@ export class ProjectController {
   async updateSecrets(
     @CurrentUser() user: AuthPayload,
     @Param('projectId') projectId: ObjectIdType,
-    @Body('secrets') secrets: Record<string, string>
+    @Body() secrets: Record<string, string>
   ) {
     if (!isMongoId(projectId)) throw new BadRequestException({ message: 'Not a valid project id' });
-    const result = await this.projectService.updateSecrets({ userId: user.id, projectId, secrets });
+    const result = await this.projectService.updateSecrets(user.id, projectId, secrets);
     return { message: 'Secrets updated successfully', result };
   }
 }

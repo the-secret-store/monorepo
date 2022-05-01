@@ -1,14 +1,11 @@
 import { ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  CreateProjectInputDto,
-  UpdateSecretsInputDto,
-} from '@the-secret-store/api-interfaces/dtos/project';
+import { CreateProjectInputDto } from '@the-secret-store/api-interfaces/dtos/project';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
-import { MiscConfig } from '../../config';
 import { EncryptionService } from '../../utils/EncryptionService';
 import { UserService } from '../user/user.service';
+import { AccessLevel } from './access-levels.enum';
 import { Project } from './project.entity';
 
 @Injectable()
@@ -20,7 +17,7 @@ export class ProjectService {
     private readonly logger: Logger,
     private readonly configService: ConfigService
   ) {
-    const encryptionKey = this.configService.get<MiscConfig['encryptionKey']>('misc.encryptionKey');
+    const encryptionKey = this.configService.get('SECRETS_ENCRYPTION_KEY');
     this.encryptionEngine = new EncryptionService(encryptionKey, 'aes-256-gcm');
   }
 
@@ -36,19 +33,27 @@ export class ProjectService {
   }
 
   async findById(id: ObjectIdType) {
-    return this.repo.findOne(id);
-  }
-
-  async updateSecrets({ userId, projectId, secrets }: UpdateSecretsInputDto) {
-    this.checkAccess(userId, projectId);
-    const project = await this.findById(projectId);
-
+    const [project] = await this.repo.findByIds([id]);
     if (!project)
       throw new NotFoundException({
         message: 'The given project id is either invalid or the project no longer exist',
       });
+    this.logger.debug(project, ProjectService.name);
+    return project;
+  }
 
-    project.backup = project.secrets;
+  async updateSecrets(
+    userId: ObjectIdType,
+    projectId: ObjectIdType,
+    secrets: Record<string, string>
+  ) {
+    const project = await this.checkAccessAndFindProject(
+      userId,
+      projectId,
+      AccessLevel.COLLABORATOR
+    );
+
+    project.backup = project.secrets || {};
     project.secrets = this.encryptionEngine.encryptValues(secrets);
     project.lastUpdatedBy = userId;
 
@@ -58,8 +63,7 @@ export class ProjectService {
   }
 
   async getSecrets(userId: ObjectIdType, projectId: ObjectIdType) {
-    this.checkAccess(userId, projectId);
-    const project = await this.findById(projectId);
+    const project = await this.checkAccessAndFindProject(userId, projectId, AccessLevel.MEMBER);
 
     return this.encryptionEngine.decryptValues(project.secrets);
   }
@@ -68,11 +72,40 @@ export class ProjectService {
    * Checks if the user has access to the project,
    * if not, throws an exception and terminates the request
    */
-  private async checkAccess(userId: ObjectIdType, projectId: ObjectIdType) {
-    const user = await this.userService.findById(userId);
+  private async checkAccessAndFindProject(
+    userId: ObjectIdType,
+    projectId: ObjectIdType,
+    accessLevel: AccessLevel
+  ) {
+    const project = await this.findById(projectId);
 
-    if (!user.projects.some(p => p === projectId)) {
-      throw new ForbiddenException({ message: "You don't have access to this project" });
+    const throwError = () => {
+      throw new ForbiddenException({
+        message: `The user is not a ${accessLevel} of the project`,
+      });
+    };
+
+    switch (accessLevel) {
+      case AccessLevel.OWNER:
+        if (project.owner !== userId) throwError();
+        break;
+
+      case AccessLevel.COLLABORATOR:
+        if (!(project.collaborators.includes(userId) || project.owner === userId)) throwError();
+        break;
+
+      case AccessLevel.MEMBER:
+        if (
+          !(
+            project.members.includes(userId) ||
+            project.collaborators.includes(userId) ||
+            project.owner === userId
+          )
+        )
+          throwError();
+        break;
     }
+
+    return project;
   }
 }
