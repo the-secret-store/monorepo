@@ -44,7 +44,7 @@ export class EncryptionService {
     const [iv, encrypted] = cipherText.split('.');
     const decipher = createDecipheriv(
       this.algorithm,
-      Buffer.from(this.key),
+      Buffer.from(this.key, 'hex'),
       Buffer.from(iv, 'hex')
     );
 
