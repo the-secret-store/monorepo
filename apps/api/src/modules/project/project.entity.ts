@@ -30,9 +30,6 @@ export class Project {
   secrets: Record<string, string>;
 
   @Column({ type: 'array', default: [] })
-  specialAccessTokens: ObjectIdType[];
-
-  @Column({ type: 'array', default: [] })
   members: ObjectIdType[];
 
   @Column({ type: 'array', default: [] })
@@ -58,7 +55,6 @@ export class Project {
   protected beforeInsert() {
     if (!this.owner) this.owner = this.createdBy;
     if (!this.collaborators) this.collaborators = [];
-    if (!this.specialAccessTokens) this.specialAccessTokens = [];
     if (!this.members) this.members = [];
   }
 }
