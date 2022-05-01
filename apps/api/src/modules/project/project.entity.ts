@@ -7,10 +7,8 @@ import {
   Entity,
   ObjectID as ObjectIdType,
   ObjectIdColumn,
-  OneToMany,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from '../user/user.entity';
 
 @Entity()
 export class Project {
@@ -42,7 +40,6 @@ export class Project {
   createdBy: ObjectIdType;
 
   @Column({ type: 'string' })
-  @OneToMany(() => User, user => user.projects)
   owner: ObjectIdType;
 
   @CreateDateColumn({ type: 'time with time zone' })
