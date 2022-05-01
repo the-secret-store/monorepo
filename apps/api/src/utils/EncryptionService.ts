@@ -34,7 +34,7 @@ export class EncryptionService {
 
   encrypt(plainText: string) {
     const iv = randomBytes(16);
-    const cipher = createCipheriv(this.algorithm, Buffer.from(this.key), iv);
+    const cipher = createCipheriv(this.algorithm, Buffer.from(this.key, 'hex'), iv);
 
     const encrypted = Buffer.concat([cipher.update(plainText), cipher.final()]);
     return `${iv.toString('hex')}.${encrypted.toString('hex')}`;
