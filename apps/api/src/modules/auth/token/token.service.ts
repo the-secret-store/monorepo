@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { prettyPrint } from '@the-secret-store/util/console';
 import { UserAgent } from '../../../constants';
 import { AuthConfig } from '../../../config';
-import { prettyPrint } from '../../../utils';
 import { User } from '../../user/user.entity';
 import { AuthPayload } from './token.strategy';
 

@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@the-secret-store/api-interfaces/*": ["libs/api-interfaces/src/*"]
+      "@the-secret-store/api-interfaces/*": ["libs/api-interfaces/src/*"],
+      "@the-secret-store/util/*": ["libs/util/src/*"],
+      "@the-secret-store/util": ["libs/util/src"]
     }
   },
   "exclude": ["node_modules", "tmp"]

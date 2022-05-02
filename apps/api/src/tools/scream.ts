@@ -1,6 +1,6 @@
 import { LoggerService, LogLevel } from '@nestjs/common';
 import * as pc from 'picocolors';
-import { prettyPrint } from '../utils';
+import { prettyPrint } from '@the-secret-store/util';
 
 type LogMsg = string | Record<string, unknown> | Array<unknown> | object | Error;
 

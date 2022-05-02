@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserInputDto } from '@the-secret-store/api-interfaces/dtos/user';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
-import { Deprecated } from '../../decorators';
+import { Deprecated } from '@the-secret-store/util/decorators';
 import { User } from './user.entity';
 
 @Injectable()
