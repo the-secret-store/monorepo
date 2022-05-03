@@ -15,12 +15,12 @@
       "request": "launch",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["start", "api"],
-      "console": "integratedTerminal",
+      "console": "externalTerminal",
       "env": {
         "NODE_ENV": "development"
       },
       "sourceMaps": true,
-      "skipFiles": ["${workspaceFolder}/node_modules/**/*.js", "<node_internals>/**/*.js"]
+      "skipFiles": ["${workspaceFolder}/node_modules/**", "<node_internals>/**"]
     }
   ]
 }
