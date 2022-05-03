@@ -13,12 +13,12 @@ import { InvitationService } from './invitation.service';
 export class InvitationController {
   constructor(private readonly invitationService: InvitationService) {}
 
-  @Post('invite')
-  async invite(
+  @Post('invite-to-team')
+  async inviteToTeam(
     @CurrentUser() inviter: AuthPayload,
     @Body() createInviteDetails: CreateInviteInputDto
   ) {
-    const invitation = await this.invitationService.invite(inviter.id, createInviteDetails);
+    const invitation = await this.invitationService.inviteToTeam(inviter.id, createInviteDetails);
     return { message: 'Invitation created successfully', result: invitation };
   }
 

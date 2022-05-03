@@ -7,7 +7,7 @@ import {
   ObjectIdColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Privilege } from '@the-secret-store/api-interfaces/enums';
+import { Privilege, ProjectAccessLevel } from '@the-secret-store/api-interfaces/enums';
 
 @Entity()
 export class Invitation {
@@ -21,10 +21,13 @@ export class Invitation {
   from: ObjectIdType;
 
   @Column({ type: 'string' })
-  team: ObjectIdType;
+  teamOrProject: ObjectIdType;
 
   @Column({ enum: Privilege })
-  privilege: Privilege;
+  privilege?: Privilege;
+
+  @Column({ enum: ProjectAccessLevel })
+  accessLevel?: ProjectAccessLevel;
 
   @Column()
   status: 'pending' | 'accepted' | 'rejected' | 'expired' | 'revoked' = 'pending';

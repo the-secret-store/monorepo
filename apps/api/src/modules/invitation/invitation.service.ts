@@ -17,7 +17,7 @@ export class InvitationService {
     private readonly userService: UserService
   ) {}
 
-  async invite(inviterId: ObjectIdType, { email, teamId, privilege }: CreateInviteInputDto) {
+  async inviteToTeam(inviterId: ObjectIdType, { email, teamId, privilege }: CreateInviteInputDto) {
     const team = await this.teamService.findById(ObjectId(teamId));
 
     if (!team.admins.includes(inviterId)) {
@@ -27,7 +27,7 @@ export class InvitationService {
     const invitation = this.repo.create({
       from: inviterId,
       to: email,
-      team: teamId,
+      teamOrProject: teamId,
       privilege,
     });
 
@@ -61,7 +61,7 @@ export class InvitationService {
       throw new ForbiddenException({ message: 'You are not the recipient of this invitation' });
     }
 
-    await this.addUserToTeam(invitation.to, invitation.team, invitation.privilege);
+    await this.addUserToTeam(invitation.to, invitation.teamOrProject, invitation.privilege);
     invitation.status = 'accepted';
     await this.repo.save(invitation);
 
