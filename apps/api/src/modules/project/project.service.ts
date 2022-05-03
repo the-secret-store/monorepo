@@ -94,7 +94,7 @@ export class ProjectService {
 
     switch (accessLevel) {
       case ProjectAccessLevel.OWNER:
-        if (project.owner !== userId) throwError();
+        if (!userId.equals(project.owner)) throwError();
         break;
 
       case ProjectAccessLevel.COLLABORATOR:
