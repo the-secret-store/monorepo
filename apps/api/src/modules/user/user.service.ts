@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserInputDto } from '@the-secret-store/api-interfaces/dtos/user';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
+import { CreateUserInputDto } from '@the-secret-store/api-interfaces/dtos/user';
+import { Email } from '@the-secret-store/api-interfaces/types';
 import { Deprecated } from '@the-secret-store/util/decorators';
 import { User } from './user.entity';
 
@@ -43,5 +44,3 @@ export class UserService {
     return this.repo.save(user);
   }
 }
-
-type Email = string;

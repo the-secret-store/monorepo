@@ -1,3 +1,4 @@
+import { Email } from '../../types';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateUserInputDto {
@@ -11,5 +12,5 @@ export class CreateUserInputDto {
 
   @IsEmail()
   @IsNotEmpty()
-  email: string;
+  email: Email;
 }

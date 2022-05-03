@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Privilege, ProjectAccessLevel } from '@the-secret-store/api-interfaces/enums';
+import { Email } from '@the-secret-store/api-interfaces/types';
 
 @Entity()
 export class Invitation {
@@ -41,5 +42,3 @@ export class Invitation {
   @UpdateDateColumn({ type: 'time with time zone' })
   updatedAt: Date;
 }
-
-type Email = string;

@@ -1,9 +1,10 @@
-import { Privilege } from '../../enums';
 import { IsEmail, IsEnum, IsMongoId, IsNotEmpty } from 'class-validator';
+import { Privilege } from '../../enums';
+import { Email } from '../../types';
 
 export class CreateTeamInviteInputDto {
   @IsEmail()
-  email: string;
+  email: Email;
 
   @IsMongoId()
   @IsNotEmpty()

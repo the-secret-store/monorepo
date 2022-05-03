@@ -1,9 +1,10 @@
-import { ProjectAccessLevel } from '../../enums';
 import { IsEmail, IsEnum, IsMongoId, IsNotEmpty } from 'class-validator';
+import { Email } from '../../types';
+import { ProjectAccessLevel } from '../../enums';
 
 export class CreateProjectInviteInputDto {
   @IsEmail()
-  email: string;
+  email: Email;
 
   @IsMongoId()
   @IsNotEmpty()

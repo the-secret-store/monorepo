@@ -9,6 +9,7 @@ import {
   OneToMany,
   UpdateDateColumn,
 } from 'typeorm';
+import { Email } from '@the-secret-store/api-interfaces/types';
 import { Project } from '../project/project.entity';
 
 @Entity()
@@ -20,7 +21,7 @@ export class User {
   displayName: string;
 
   @Column()
-  email: string;
+  email: Email;
 
   @Column()
   avatarUrl: string;
