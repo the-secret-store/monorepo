@@ -205,16 +205,45 @@
         ]
       }
     },
-    "/invitation/invite": {
+    "/invitation/invite-to-team": {
       "post": {
-        "operationId": "InvitationController_invite",
+        "operationId": "InvitationController_inviteToTeam",
         "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateInviteInputDto"
+                "$ref": "#/components/schemas/CreateTeamInviteInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "invitation"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/invitation/invite-to-project": {
+      "post": {
+        "operationId": "InvitationController_inviteToProject",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProjectInviteInputDto"
               }
             }
           }
@@ -311,7 +340,11 @@
         "type": "object",
         "properties": {}
       },
-      "CreateInviteInputDto": {
+      "CreateTeamInviteInputDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateProjectInviteInputDto": {
         "type": "object",
         "properties": {}
       }

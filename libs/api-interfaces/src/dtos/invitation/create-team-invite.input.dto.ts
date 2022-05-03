@@ -1,7 +1,7 @@
-import { Privilege } from '@the-secret-store/api-interfaces/enums';
+import { Privilege } from '../../enums';
 import { IsEmail, IsEnum, IsMongoId, IsNotEmpty } from 'class-validator';
 
-export class CreateInviteInputDto {
+export class CreateTeamInviteInputDto {
   @IsEmail()
   email: string;
 

@@ -1,6 +1,9 @@
 import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { CreateInviteInputDto } from '@the-secret-store/api-interfaces/dtos/invitation';
+import {
+  CreateProjectInviteInputDto,
+  CreateTeamInviteInputDto,
+} from '@the-secret-store/api-interfaces/dtos/invitation';
 import { docTags } from '../../constants/api-tags';
 import { CurrentUser, Protect } from '../auth/decorators';
 import { AuthPayload } from '../auth/token/token.strategy';
@@ -16,9 +19,21 @@ export class InvitationController {
   @Post('invite-to-team')
   async inviteToTeam(
     @CurrentUser() inviter: AuthPayload,
-    @Body() createInviteDetails: CreateInviteInputDto
+    @Body() createInviteDetails: CreateTeamInviteInputDto
   ) {
     const invitation = await this.invitationService.inviteToTeam(inviter.id, createInviteDetails);
+    return { message: 'Invitation created successfully', result: invitation };
+  }
+
+  @Post('invite-to-project')
+  async inviteToProject(
+    @CurrentUser() inviter: AuthPayload,
+    @Body() createInviteDetails: CreateProjectInviteInputDto
+  ) {
+    const invitation = await this.invitationService.inviteToProject(
+      inviter.id,
+      createInviteDetails
+    );
     return { message: 'Invitation created successfully', result: invitation };
   }
 
@@ -27,7 +42,11 @@ export class InvitationController {
     @CurrentUser() user: AuthPayload,
     @Param('invitationId') invitationId: string
   ) {
-    const invitation = await this.invitationService.acceptInvitation(user.email, invitationId);
+    const invitation = await this.invitationService.acceptInvitation(
+      user.email,
+      user.id,
+      invitationId
+    );
     return { message: 'Invitation accepted successfully', result: invitation };
   }
 }

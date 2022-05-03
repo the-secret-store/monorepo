@@ -15,13 +15,16 @@ export class Invitation {
   readonly id: ObjectId;
 
   @Column()
-  to: string;
+  to: 'team' | 'project';
+
+  @Column()
+  recipient: Email;
 
   @Column({ type: 'string' })
   from: ObjectIdType;
 
   @Column({ type: 'string' })
-  teamOrProject: ObjectIdType;
+  teamOrProjectId: ObjectIdType;
 
   @Column({ enum: Privilege })
   privilege?: Privilege;
@@ -38,3 +41,5 @@ export class Invitation {
   @UpdateDateColumn({ type: 'time with time zone' })
   updatedAt: Date;
 }
+
+type Email = string;

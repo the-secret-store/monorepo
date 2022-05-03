@@ -76,12 +76,15 @@ export class ProjectService {
    * Checks if the user has access to the project,
    * if not, throws an exception and terminates the request
    */
-  private async checkAccessAndFindProject(
+  async checkAccessAndFindProject(
     userId: ObjectIdType,
     projectId: ObjectIdType,
     accessLevel: ProjectAccessLevel
   ) {
     const project = await this.findById(projectId);
+
+    if (!project)
+      throw new NotFoundException({ message: 'The specified project could not be found' });
 
     const throwError = () => {
       throw new ForbiddenException({
@@ -111,5 +114,29 @@ export class ProjectService {
     }
 
     return project;
+  }
+
+  async addUserToProject(
+    userId: ObjectIdType,
+    projectId: ObjectIdType,
+    accessLevel: ProjectAccessLevel
+  ) {
+    const project = await this.findById(projectId);
+
+    switch (accessLevel) {
+      case ProjectAccessLevel.OWNER:
+        project.owner = userId; // !NOT recommended
+        break;
+
+      case ProjectAccessLevel.COLLABORATOR:
+        project.collaborators.push(userId);
+        break;
+
+      case ProjectAccessLevel.MEMBER:
+        project.members.push(userId);
+        break;
+    }
+
+    await this.repo.save(project);
   }
 }
