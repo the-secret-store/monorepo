@@ -1,5 +1,6 @@
-import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Param, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ObjectId } from 'mongodb';
 import {
   CreateProjectInviteInputDto,
   CreateTeamInviteInputDto,
@@ -8,6 +9,7 @@ import { docTags } from '../../constants/api-tags';
 import { CurrentUser, Protect } from '../auth/decorators';
 import { AuthPayload } from '../auth/token/token.strategy';
 import { InvitationService } from './invitation.service';
+import { isMongoId } from 'class-validator';
 
 @Controller('invitation')
 @Protect()
@@ -31,7 +33,7 @@ export class InvitationController {
     @Body() createInviteDetails: CreateProjectInviteInputDto
   ) {
     const invitation = await this.invitationService.inviteToProject(
-      inviter.id,
+      ObjectId(inviter.id),
       createInviteDetails
     );
     return { message: 'Invitation created successfully', result: invitation };
@@ -42,10 +44,13 @@ export class InvitationController {
     @CurrentUser() user: AuthPayload,
     @Param('invitationId') invitationId: string
   ) {
+    if (!isMongoId(invitationId)) {
+      throw new BadRequestException({ message: 'Invalid invitation id' });
+    }
     const invitation = await this.invitationService.acceptInvitation(
       user.email,
-      user.id,
-      invitationId
+      ObjectId(user.id),
+      ObjectId(invitationId)
     );
     return { message: 'Invitation accepted successfully', result: invitation };
   }

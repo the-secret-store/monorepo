@@ -5,7 +5,7 @@ import {
   CreateTeamInviteInputDto,
 } from '@the-secret-store/api-interfaces/dtos/invitation';
 import { Privilege, ProjectAccessLevel } from '@the-secret-store/api-interfaces/enums';
-import { isMongoId } from 'class-validator';
+import { Email } from '@the-secret-store/api-interfaces/types';
 import { ObjectId } from 'mongodb';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
 import { ProjectService } from '../project/project.service';
@@ -63,7 +63,7 @@ export class InvitationService {
       from: inviterId,
       to: 'project',
       recipient: email,
-      teamOrProjectId: projectId,
+      teamOrProjectId: ObjectId(projectId),
       accessLevel: accessLevel || ProjectAccessLevel.MEMBER,
     });
 
@@ -87,10 +87,7 @@ export class InvitationService {
     await this.teamService.addUser(team, user.id, privilege);
   }
 
-  async acceptInvitation(userEmail: string, userId: string, invitationId: string) {
-    if (!isMongoId(invitationId)) {
-      throw new BadRequestException({ message: 'Invalid invitation id' });
-    }
+  async acceptInvitation(userEmail: Email, userId: ObjectIdType, invitationId: ObjectIdType) {
     const invitation = await this.repo.findOne(invitationId);
 
     if (invitation.recipient !== userEmail) {
@@ -100,18 +97,14 @@ export class InvitationService {
     switch (invitation.to) {
       case 'project':
         await this.projectService.addUserToProject(
-          ObjectId(userId),
+          userId,
           invitation.teamOrProjectId,
           invitation.accessLevel
         );
         break;
 
       case 'team':
-        await this.addUserToTeam(
-          ObjectId(userId),
-          invitation.teamOrProjectId,
-          invitation.privilege
-        );
+        await this.addUserToTeam(userId, invitation.teamOrProjectId, invitation.privilege);
         break;
     }
     invitation.status = 'accepted';
