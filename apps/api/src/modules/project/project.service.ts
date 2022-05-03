@@ -94,26 +94,28 @@ export class ProjectService {
 
     switch (accessLevel) {
       case ProjectAccessLevel.OWNER:
-        if (!userId.equals(project.owner)) throwError();
+        if (userId.equals(project.owner)) return project;
         break;
 
       case ProjectAccessLevel.COLLABORATOR:
-        if (!(project.collaborators.includes(userId) || project.owner === userId)) throwError();
+        if (
+          project.collaborators.some(collaborator => collaborator.equals(userId)) ||
+          userId.equals(project.owner)
+        )
+          return project;
         break;
 
       case ProjectAccessLevel.MEMBER:
         if (
-          !(
-            project.members.includes(userId) ||
-            project.collaborators.includes(userId) ||
-            project.owner === userId
-          )
+          project.collaborators.some(collaborator => collaborator.equals(userId)) ||
+          project.members.some(member => member.equals(userId)) ||
+          userId.equals(project.owner)
         )
-          throwError();
+          return project;
         break;
     }
 
-    return project;
+    throwError();
   }
 
   async addUserToProject(

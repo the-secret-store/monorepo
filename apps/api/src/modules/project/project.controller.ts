@@ -2,6 +2,7 @@ import { BadRequestException, Body, Controller, Get, Param, Patch, Post } from '
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateProjectInputDto } from '@the-secret-store/api-interfaces/dtos/project';
 import { isMongoId } from 'class-validator';
+import { ObjectId } from 'mongodb';
 import { ObjectID as ObjectIdType } from 'typeorm';
 import { docTags } from '../../constants/api-tags';
 import { CurrentUser, Protect } from '../auth/decorators';
@@ -24,7 +25,7 @@ export class ProjectController {
   @Get('/secrets/:projectId')
   async getSecrets(@CurrentUser() user: AuthPayload, @Param('projectId') projectId: ObjectIdType) {
     if (!isMongoId(projectId)) throw new BadRequestException({ message: 'Invalid project id' });
-    const secrets = await this.projectService.getSecrets(user.id, projectId);
+    const secrets = await this.projectService.getSecrets(ObjectId(user.id), ObjectId(projectId));
     return { message: 'Project secrets retrieved successfully', result: secrets };
   }
 
@@ -35,7 +36,11 @@ export class ProjectController {
     @Body() secrets: Record<string, string>
   ) {
     if (!isMongoId(projectId)) throw new BadRequestException({ message: 'Not a valid project id' });
-    const result = await this.projectService.updateSecrets(user.id, projectId, secrets);
+    const result = await this.projectService.updateSecrets(
+      ObjectId(user.id),
+      ObjectId(projectId),
+      secrets
+    );
     return { message: 'Secrets updated successfully', result };
   }
 }
