@@ -2,10 +2,10 @@ import { ForbiddenException, Injectable, Logger, NotFoundException } from '@nest
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProjectInputDto } from '@the-secret-store/api-interfaces/dtos/project';
+import { ProjectAccessLevel } from '@the-secret-store/api-interfaces/enums';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
 import { EncryptionService } from '../../utils/EncryptionService';
 import { UserService } from '../user/user.service';
-import { AccessLevel } from './access-levels.enum';
 import { Project } from './project.entity';
 
 @Injectable()
@@ -50,7 +50,7 @@ export class ProjectService {
     const project = await this.checkAccessAndFindProject(
       userId,
       projectId,
-      AccessLevel.COLLABORATOR
+      ProjectAccessLevel.COLLABORATOR
     );
 
     project.backup = project.secrets || {};
@@ -63,7 +63,11 @@ export class ProjectService {
   }
 
   async getSecrets(userId: ObjectIdType, projectId: ObjectIdType) {
-    const project = await this.checkAccessAndFindProject(userId, projectId, AccessLevel.MEMBER);
+    const project = await this.checkAccessAndFindProject(
+      userId,
+      projectId,
+      ProjectAccessLevel.MEMBER
+    );
 
     return this.encryptionEngine.decryptValues(project.secrets);
   }
@@ -75,7 +79,7 @@ export class ProjectService {
   private async checkAccessAndFindProject(
     userId: ObjectIdType,
     projectId: ObjectIdType,
-    accessLevel: AccessLevel
+    accessLevel: ProjectAccessLevel
   ) {
     const project = await this.findById(projectId);
 
@@ -86,15 +90,15 @@ export class ProjectService {
     };
 
     switch (accessLevel) {
-      case AccessLevel.OWNER:
+      case ProjectAccessLevel.OWNER:
         if (project.owner !== userId) throwError();
         break;
 
-      case AccessLevel.COLLABORATOR:
+      case ProjectAccessLevel.COLLABORATOR:
         if (!(project.collaborators.includes(userId) || project.owner === userId)) throwError();
         break;
 
-      case AccessLevel.MEMBER:
+      case ProjectAccessLevel.MEMBER:
         if (
           !(
             project.members.includes(userId) ||
