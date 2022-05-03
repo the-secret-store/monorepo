@@ -140,6 +140,25 @@
         ]
       }
     },
+    "/project/{projectId}": {
+      "get": {
+        "operationId": "ProjectController_projectInformation",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "project"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/project/secrets/{projectId}": {
       "get": {
         "operationId": "ProjectController_getSecrets",

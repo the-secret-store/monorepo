@@ -22,6 +22,16 @@ export class ProjectController {
     return { message: 'Project created successfully', result: project };
   }
 
+  @Get('/:projectId')
+  async projectInformation(
+    @CurrentUser() user: AuthPayload,
+    @Param('projectId') projectId: ObjectIdType
+  ) {
+    if (!isMongoId(projectId)) throw new BadRequestException({ message: 'Not a valid project id' });
+    const result = await this.projectService.findById(projectId);
+    return { message: 'Project information retrieved successfully', result };
+  }
+
   @Get('/secrets/:projectId')
   async getSecrets(@CurrentUser() user: AuthPayload, @Param('projectId') projectId: ObjectIdType) {
     if (!isMongoId(projectId)) throw new BadRequestException({ message: 'Invalid project id' });
