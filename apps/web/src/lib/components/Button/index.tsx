@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
-import { useHyperLink } from '../../hooks/useHyperLink';
+import { useHyperLink } from '../../hooks';
 import { ButtonStyleWrapper, ButtonVariants } from './button.style';
 
 export function Button({ children, variant, link, onClick, ...rest }: IButtonProps) {
