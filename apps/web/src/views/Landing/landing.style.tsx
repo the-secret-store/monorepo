@@ -1,16 +1,6 @@
 import styled from 'styled-components';
-import Logo from '../../assets/Logo.png';
 
-export function LandingPage() {
-  return (
-    <StyleWrapper>
-      <img src={Logo} alt="Logo" />
-      <h1>The Secret Store</h1>
-    </StyleWrapper>
-  );
-}
-
-const StyleWrapper = styled.main`
+export const LandingPageStyles = styled.main`
   display: grid;
   height: 100vh;
   place-content: center;
