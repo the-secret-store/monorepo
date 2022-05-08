@@ -1,33 +1,12 @@
-import styled from 'styled-components';
-import NxWelcome from '../../components/nx-welcome';
-
-import { Route, Link, Routes } from 'react-router-dom';
-
-const StyledApp = styled.div`
-  // Your style here
-`;
+import { Route, Routes } from 'react-router-dom';
+import { Text } from '../../components/Text';
 
 export function App() {
   return (
-    <StyledApp>
-      <br />
-      <hr />
-      <br />
-      <nav role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={<NxWelcome title="web" />} />
-        <Route path="/page-2" element={<NxWelcome title="page 2" />} />
-      </Routes>
-    </StyledApp>
+    <Routes>
+      <Route path="/" element={<Text>Home</Text>} />
+      <Route path="/page-2" element={<Text>Page 2</Text>} />
+    </Routes>
   );
 }
 
