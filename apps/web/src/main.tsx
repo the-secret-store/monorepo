@@ -5,11 +5,11 @@ import { Home } from './views';
 
 ReactDOM.render(
   <StrictMode>
-    <Shell>
-      <ThemeEngine>
+    <ThemeEngine>
+      <Shell>
         <Home />
-      </ThemeEngine>
-    </Shell>
+      </Shell>
+    </ThemeEngine>
   </StrictMode>,
   document.getElementById('root')
 );

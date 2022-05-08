@@ -1,24 +1,23 @@
-import { AppShell, Navbar, Header } from '@mantine/core';
+import { AppShell, Navbar, Header, Text } from '@mantine/core';
+
+const HEADER_HEIGHT = 60;
 
 export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <AppShell
       padding="md"
       navbar={
-        <Navbar
-          width={{ base: 300 }}
-          height={500}
-          p="xs"
-          style={{ minHeight: 'calc(100vh - 60px)' }}
-        >
-          {/* Navbar content */}
-          <p>Navbar</p>
+        <Navbar width={{ base: 300 }} height={`calc(100vh - ${HEADER_HEIGHT}px)`} p="xs">
+          <Navbar.Section>
+            <Text>Hi</Text>
+          </Navbar.Section>
         </Navbar>
       }
       header={
-        <Header height={60} p="xs">
-          {/* Header content */}
-          <p>Header</p>
+        <Header height={HEADER_HEIGHT} p="xs" style={{ display: 'flex', alignItems: 'center' }}>
+          <Text color={'violet'} weight={600} size="xl">
+            The Secret Store
+          </Text>
         </Header>
       }
       styles={theme => ({
@@ -27,10 +26,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
             theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
         },
       })}
+      style={{ height: '100vh' }}
     >
-      <h1>Hello World</h1>
       {children}
-      {/* Your application here */}
     </AppShell>
   );
 }
