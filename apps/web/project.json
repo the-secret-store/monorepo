@@ -13,7 +13,7 @@
         "baseHref": "/",
         "index": "apps/web/src/base/index.html",
         "main": "apps/web/src/base/app-daemon.tsx",
-        "assets": ["apps/web/src/base/favicon.ico", "apps/web/src/base/assets"],
+        "assets": ["apps/web/src/base/favicon.ico"],
         "polyfills": "apps/web/src/base/polyfills.ts",
         "tsConfig": "apps/web/tsconfig.app.json",
         "styles": [],

@@ -1,7 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-import theme from './theme.values';
-
 export const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: inherit;
@@ -16,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: ${theme.font};
+    font-family: ${({ theme }) => theme.font};
     font-size: 1.8rem;
   }
 
@@ -52,12 +50,12 @@ export const GlobalStyles = createGlobalStyle`
 
   body::-webkit-scrollbar-thumb {
     width: 1rem;
-    background-color: ${theme.colors.dark};
+    background-color: ${({ theme }) => theme.colors.dark};
   }
 
   body {
-    background-color: ${theme.colors.black};
-    color: ${theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
   }
 
   a {
@@ -69,5 +67,29 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
     list-style: none;
+  }
+
+  h1 {
+    font-size: 4.8rem;
+  }
+
+  h2 {
+    font-size: 3.8rem;
+  }
+
+  h3 {
+    font-size: 2.8rem;
+  }
+
+  h4 {
+    font-size: 2.2rem;
+  }
+
+  h5 {
+    font-size: 1.8rem;
+  }
+
+  h6, div, p, div, span, input, a, button {
+    font-size: 1.6rem;
   }
 `;
