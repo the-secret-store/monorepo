@@ -1,4 +1,4 @@
-export default {
+export const theme = {
   font: '"Cascadia Code", monospace',
   colors: {
     black: '#282A36',
@@ -14,3 +14,5 @@ export default {
     pink: '#FF79C6',
   },
 };
+
+export type ITheme = typeof theme;
