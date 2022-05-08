@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import NxWelcome from './nx-welcome';
+import NxWelcome from '../../components/nx-welcome';
 
 import { Route, Link, Routes } from 'react-router-dom';
 
