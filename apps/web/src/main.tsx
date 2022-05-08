@@ -1,13 +1,15 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom';
-import { ThemeEngine } from './app';
+import { Shell, ThemeEngine } from './app';
 import { Home } from './views';
 
 ReactDOM.render(
   <StrictMode>
-    <ThemeEngine>
-      <Home />
-    </ThemeEngine>
+    <Shell>
+      <ThemeEngine>
+        <Home />
+      </ThemeEngine>
+    </Shell>
   </StrictMode>,
   document.getElementById('root')
 );
