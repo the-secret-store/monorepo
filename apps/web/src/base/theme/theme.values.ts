@@ -2,7 +2,7 @@ export const theme = {
   font: '"Cascadia Code", monospace',
   colors: {
     black: '#282A36',
-    dark: '#13161d',
+    dark: '#1b2029',
     slate: '#44475A',
     white: '#F2F4F8',
     red: '#FF5555',

@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const TextInputStyleWrapper = styled.div<{ state: InputElementStates }>`
   display: grid;
-  gap: 0.5rem;
+  gap: 0.6rem;
 
   label {
+    grid-row-start: 1;
   }
 
   input {
@@ -12,10 +13,21 @@ export const TextInputStyleWrapper = styled.div<{ state: InputElementStates }>`
     color: inherit;
     background-color: inherit;
     min-width: 300px;
-    border: 2px solid ${({ theme }) => theme.colors.purple};
-    border-radius: 0.2rem;
+    border: 2px solid ${({ theme }) => theme.colors.dark};
+    background-color: ${({ theme }) => theme.colors.dark};
+    border-radius: 0.4rem;
     outline: none;
-    padding: 0.8rem 1.2rem;
+    padding: 1.1rem 1.4rem;
+    transition: all 0.2s;
+    margin-bottom: 2rem;
+
+    &:focus {
+      border: 2px solid ${({ theme }) => theme.colors.purple};
+    }
+
+    &:focus + label {
+      color: ${({ theme }) => theme.colors.purple};
+    }
   }
 `;
 
