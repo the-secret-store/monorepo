@@ -1,5 +1,5 @@
 import { NavBarStyleWrapper } from './navbar.style';
-import { LogoPng } from '../../../assets';
+import { LogoPng } from '../../../assets/images';
 import { Link } from 'react-router-dom';
 
 export function NavBar() {

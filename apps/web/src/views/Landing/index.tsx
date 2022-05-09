@@ -1,5 +1,5 @@
 import { LandingPageStyles } from './landing.style';
-import { LogoPng } from '../../assets';
+import { LogoPng } from '../../assets/images';
 
 export function LandingPage() {
   return (
