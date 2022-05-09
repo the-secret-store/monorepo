@@ -1,5 +1,5 @@
-import { NavBar } from '../lib/components/NavBar';
+import { Error404 } from '../base/error/404';
 
 export function TestPage() {
-  return <NavBar />;
+  return <Error404 />;
 }
