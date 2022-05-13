@@ -22,6 +22,12 @@ export class ProjectController {
     return { message: 'Project created successfully', result: project };
   }
 
+  @Get('/accessible')
+  async accessibleProjects(@CurrentUser() user: AuthPayload) {
+    const projects = await this.projectService.getAllAccessibleProjects(ObjectId(user.id));
+    return { message: 'Accessible projects retrieved successfully', result: projects };
+  }
+
   @Get('/:projectId')
   async projectInformation(
     @CurrentUser() user: AuthPayload,

@@ -140,6 +140,25 @@
         ]
       }
     },
+    "/project/accessible": {
+      "get": {
+        "operationId": "ProjectController_accessibleProjects",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "project"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/project/{projectId}": {
       "get": {
         "operationId": "ProjectController_projectInformation",
