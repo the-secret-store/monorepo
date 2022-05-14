@@ -159,6 +159,53 @@
         ]
       }
     },
+    "/project/{projectId}/access": {
+      "get": {
+        "operationId": "ProjectController_getUsersWithAccess",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "project"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/project/{projectId}/remove-access": {
+      "patch": {
+        "operationId": "ProjectController_removeAccess",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "project"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/project/{projectId}": {
       "get": {
         "operationId": "ProjectController_projectInformation",
