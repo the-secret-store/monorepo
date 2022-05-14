@@ -2,7 +2,7 @@ import { Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MorganInterceptor, MorganModule } from 'nest-morgan';
-import { authConfig, DatabaseConfig, databaseConfig, rootConfig } from '../../config';
+import { authConfig, DatabaseConfig, databaseConfig, miscConfig, rootConfig } from '../../config';
 import { validateConfig } from '../../config/validation/config-validation';
 import { morganDevFormat } from '../../tools/request-logger';
 import { AuthModule } from '../auth/auth.module';
@@ -19,7 +19,7 @@ import { RootService } from './root.service';
     ConfigModule.forRoot({
       envFilePath: `.env.${process.env.NODE_ENV}`,
       isGlobal: true,
-      load: [rootConfig, databaseConfig, authConfig],
+      load: [rootConfig, databaseConfig, authConfig, miscConfig],
       cache: true,
       validate: validateConfig,
     }),
