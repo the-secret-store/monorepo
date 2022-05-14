@@ -1,6 +1,6 @@
-import { Error404StyleWrapper } from './404.style';
 import { Globe } from '@styled-icons/boxicons-regular/Globe';
-import { Button } from '../../../lib/components';
+import { Button } from '$web/components';
+import { Error404StyleWrapper } from './404.style';
 
 export function Error404() {
   return (

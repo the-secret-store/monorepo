@@ -1,6 +1,6 @@
-import { Button, Chip, NavBar, TableRow, TableView, TextInput } from '../../../lib/components';
-import { ProjectOverviewStyleWrapper } from './project-overview.style';
 import { LockShield } from '@styled-icons/fluentui-system-regular/LockShield';
+import { Button, Chip, NavBar, TableRow, TableView, TextInput } from '$web/components';
+import { ProjectOverviewStyleWrapper } from './project-overview.style';
 export function ProjectOverview() {
   return (
     <ProjectOverviewStyleWrapper>

@@ -1,6 +1,6 @@
-import { NavBarStyleWrapper } from './navbar.style';
-import { LogoPng } from '../../../assets/images';
 import { Link } from 'react-router-dom';
+import { NavBarStyleWrapper } from './navbar.style';
+import { LogoPng } from '$web/assets/images';
 
 export function NavBar() {
   return (

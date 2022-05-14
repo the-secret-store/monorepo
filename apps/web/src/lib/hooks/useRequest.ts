@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { useMemo } from 'react';
-import { useAuthApi } from '../../base/auth';
+import { useAuthApi } from '$web/base/auth';
 
 const errorComposer = (error: AxiosError, setAuthToken: (token: string) => void) => {
   return () => {

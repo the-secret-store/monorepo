@@ -17,7 +17,18 @@
     "paths": {
       "@the-secret-store/api-interfaces/*": ["libs/api-interfaces/src/*"],
       "@the-secret-store/util": ["libs/util/src"],
-      "@the-secret-store/util/*": ["libs/util/src/*"]
+      "@the-secret-store/util/*": ["libs/util/src/*"],
+
+      "$web/assets": ["apps/web/src/assets"],
+      "$web/assets/*": ["apps/web/src/assets/*"],
+      "$web/base": ["apps/web/src/base"],
+      "$web/base/*": ["apps/web/src/base/*"],
+      "$web/components/*": ["apps/web/src/lib/components/*"],
+      "$web/components": ["apps/web/src/lib/components"],
+      "$web/hooks/*": ["apps/web/src/lib/hooks/*"],
+      "$web/hooks": ["apps/web/src/lib/hooks"],
+      "$web/views/*": ["apps/web/src/lib/views/*"],
+      "$web/views": ["apps/web/src/lib/views"]
     }
   },
   "exclude": ["node_modules", "tmp"]

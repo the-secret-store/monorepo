@@ -1,4 +1,4 @@
-import { ITheme } from '../../../base/theme';
+import { ITheme } from '$web/base/theme';
 import styled from 'styled-components';
 
 export const ChipStyleWrapper = styled.span<{ color?: keyof ITheme['colors'] }>`

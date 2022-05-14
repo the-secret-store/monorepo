@@ -1,6 +1,5 @@
-import { Button } from '../../../lib/components';
 import { FallbackProps } from 'react-error-boundary';
-
+import { Button } from '$web/components';
 import { ErrorBoundaryStyleWrapper } from './error-boundary.style';
 
 export function UnexpectedError({ error, resetErrorBoundary }: FallbackProps) {

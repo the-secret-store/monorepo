@@ -1,4 +1,4 @@
-import { ITheme } from '../../../base/theme';
+import { ITheme } from '$web/base/theme';
 import { ReactNode } from 'react';
 import { ChipStyleWrapper } from './chip.style';
 

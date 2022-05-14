@@ -1,5 +1,5 @@
 import { Key } from '@styled-icons/fluentui-system-regular/Key';
-import { Button, NavBar } from '../../../lib/components';
+import { Button, NavBar } from '$web/components';
 import { SettingsStyleWrapper } from './settings.style';
 
 export function UserSettings() {

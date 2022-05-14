@@ -1,4 +1,4 @@
-import { NavBar, ProjectList } from '../../../lib/components';
+import { NavBar, ProjectList } from '$web/components';
 import { ProjectListPageWrapper } from './project-list.page.style';
 import { getProjects } from './projects.service';
 

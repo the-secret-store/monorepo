@@ -1,5 +1,5 @@
-import { Button, TextInput } from '../../../lib/components';
-import { LogoPng } from '../../../assets/images';
+import { Button, TextInput } from '$web/components';
+import { LogoPng } from '$web/assets/images';
 import { handleLogin } from './login.service';
 import { LoginStyleWrapper } from './login.style';
 
