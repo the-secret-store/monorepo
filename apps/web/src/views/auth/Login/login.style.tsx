@@ -13,6 +13,7 @@ export const LoginStyleWrapper = styled.main`
 
   h2 {
     color: ${({ theme }) => theme.colors.purple};
+    margin-bottom: 1em;
   }
 
   form {

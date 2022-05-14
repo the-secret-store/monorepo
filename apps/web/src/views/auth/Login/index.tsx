@@ -1,3 +1,4 @@
+import { Google as GoogleIcon } from '@styled-icons/boxicons-logos/Google';
 import { LogoPng } from '$web/assets/images';
 import { Button } from '$web/components/Button';
 import { useEffect } from 'react';
@@ -17,7 +18,12 @@ export function Login() {
     <LoginStyleWrapper>
       <img src={LogoPng} alt="logo" />
       <h2>The Secret Store</h2>
-      {!token && <Button link="http://localhost:3000/auth/login">Login</Button>}
+      {!token && (
+        <Button href="http://localhost:3000/auth/login">
+          <GoogleIcon size={20} />
+          Login with Google
+        </Button>
+      )}
     </LoginStyleWrapper>
   );
 }
