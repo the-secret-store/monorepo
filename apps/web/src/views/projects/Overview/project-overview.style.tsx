@@ -15,7 +15,8 @@ export const ProjectOverviewStyleWrapper = styled.div`
     }
 
     h6 {
-      font-size: 1.4rem;
+      font-weight: 400;
+      font-size: 1.2rem;
     }
   }
 

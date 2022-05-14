@@ -24,6 +24,7 @@ export const SettingsStyleWrapper = styled.div`
 
     p {
       font-size: 1.5rem;
+      color: ${props => props.theme.colors.yellow};
     }
   }
 `;
