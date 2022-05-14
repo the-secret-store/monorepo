@@ -15,7 +15,7 @@
         "main": "apps/web/src/base/app-daemon.tsx",
         "assets": [
           "apps/web/src/assets/images/favicon.ico",
-          "apps/web/src/assets/fonts/CascadiaCodePL.woff2",
+          "apps/web/src/assets/fonts/",
           "apps/web/src/assets/styles/link-fonts.css"
         ],
         "polyfills": "apps/web/src/base/polyfills.ts",
