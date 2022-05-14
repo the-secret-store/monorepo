@@ -1,10 +1,11 @@
 import { ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateProjectInputDto } from '@the-secret-store/api-interfaces/dtos/project';
-import { ProjectAccessLevel } from '@the-secret-store/api-interfaces/enums';
 import { ObjectId } from 'mongodb';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
+
+import { CreateProjectInputDto } from '@the-secret-store/api-interfaces/dtos/project';
+import { ProjectAccessLevel } from '@the-secret-store/api-interfaces/enums';
 import { EncryptionService } from '../../utils/EncryptionService';
 import { UserService } from '../user/user.service';
 import { Project } from './project.entity';
@@ -142,20 +143,6 @@ export class ProjectService {
 
     await this.repo.save(project);
   }
-
-  /*
-  async getAllAccessibleProjects(userId: ObjectIdType) {
-    const qb = this.repo.createQueryBuilder('project');
-    qb.select().where('project.owner = :userId', { userId });
-    qb.orWhere('project.collaborators = :userId', { userId });
-    qb.orWhere('project.members = :userId', { userId });
-    const projects = await qb.getMany();
-
-    this.logger.debug(projects, ProjectService.name);
-
-    return projects;
-  }
-  */
 
   async getAllAccessibleProjects(userId: ObjectIdType) {
     const projects = await this.repo.find();
