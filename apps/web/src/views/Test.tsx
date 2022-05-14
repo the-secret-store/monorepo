@@ -1,18 +1,9 @@
-import { ProjectList } from '../lib/components/ProjectList';
+import { Chip } from '../lib/components';
 
 export function TestPage() {
   return (
     <div style={{ margin: '2rem' }}>
-      <ProjectList
-        projects={[
-          { id: '1', name: 'Project 1' },
-          {
-            id: '2',
-            name: 'Project 2',
-            gitUrl: 'github.com',
-          },
-        ]}
-      />
+      <Chip>Hi world</Chip>
     </div>
   );
 }
