@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ThemeProvider } from 'styled-components';
 
-import { Navigator } from './Navigator';
+import { NavigationEngine } from './NavigationEngine';
 import { UnexpectedError } from './error/UnexpectedError/ErrorBoundary';
 import { GlobalStyles, theme } from './theme';
 
@@ -14,7 +14,7 @@ ReactDOM.render(
       <GlobalStyles />
       <ErrorBoundary FallbackComponent={UnexpectedError}>
         <BrowserRouter>
-          <Navigator />
+          <NavigationEngine />
         </BrowserRouter>
       </ErrorBoundary>
     </ThemeProvider>

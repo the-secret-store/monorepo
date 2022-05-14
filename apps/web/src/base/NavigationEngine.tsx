@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
 import { LandingPage } from '../views';
 import { Login } from '../views/auth';
-import { Projects } from '../views/projects';
+import { ProjectOverview, Projects } from '../views/projects';
 import { TestPage } from '../views/Test';
 import { Error404 } from './error/404';
 
@@ -13,6 +13,7 @@ export function NavigationEngine() {
       <Route path="/test" element={<TestPage />} />
       <Route path="/projects" element={<Outlet />}>
         <Route index element={<Projects />} />
+        <Route path=":projectId" element={<ProjectOverview />} />
       </Route>
 
       <Route path="*" element={<Error404 />} />
