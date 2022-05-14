@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { useMemo } from 'react';
 import { useAuthApi } from '$web/base/auth';
+import { getBaseUrl } from '$web/util';
 
 const errorComposer = (error: AxiosError, setAuthToken: (token: string) => void) => {
   return () => {
@@ -23,12 +24,7 @@ export function useRequest() {
   const { isAuthenticated: auth, session, setAuthToken } = useAuthApi();
 
   const instance = useMemo(() => {
-    const instance = axios.create({
-      baseURL:
-        process.env.NODE_ENV === 'development'
-          ? 'http://localhost:5000'
-          : process.env.REACT_APP_API_URL,
-    });
+    const instance = axios.create({ baseURL: getBaseUrl() });
 
     if (auth) instance.defaults.headers.common.Authorization = `Bearer ${session.getToken()}`;
 
