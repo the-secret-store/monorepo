@@ -14,7 +14,7 @@
         "index": "apps/web/src/base/index.html",
         "main": "apps/web/src/base/app-daemon.tsx",
         "assets": [
-          "apps/web/src/assets/images/favicon.ico",
+          "apps/web/src/assets/images/",
           "apps/web/src/assets/fonts/",
           "apps/web/src/assets/styles/link-fonts.css"
         ],
