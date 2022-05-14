@@ -7,6 +7,7 @@ export const ButtonStyleWrapper = styled.button<{ variant: ButtonVariants }>`
   padding: 1rem 2rem;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   border-radius: ${props => (props.variant === 'error' ? '3rem' : '0.2rem')};
   text-transform: uppercase;
   cursor: pointer;
