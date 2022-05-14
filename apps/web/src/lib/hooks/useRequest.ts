@@ -20,7 +20,7 @@ const errorComposer = (error: AxiosError, setAuthToken: (token: string) => void)
 };
 
 export function useRequest() {
-  const { auth, session, setAuthToken } = useAuthApi();
+  const { isAuthenticated: auth, session, setAuthToken } = useAuthApi();
 
   const instance = useMemo(() => {
     const instance = axios.create({
