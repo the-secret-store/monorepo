@@ -21,6 +21,9 @@ export class Project {
   @Column({ enum: ProjectScope })
   scope: ProjectScope = ProjectScope.Personal;
 
+  @Column({ nullable: true })
+  gitUrl: string;
+
   @Column({ type: 'json', default: {} })
   backup: Record<string, string>;
 
