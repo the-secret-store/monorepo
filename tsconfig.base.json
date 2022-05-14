@@ -23,6 +23,8 @@
       "$web/assets/*": ["apps/web/src/assets/*"],
       "$web/base": ["apps/web/src/base"],
       "$web/base/*": ["apps/web/src/base/*"],
+      "$web/constants": ["apps/web/src/constants"],
+      "$web/constants/*": ["apps/web/src/constants/*"],
       "$web/components/*": ["apps/web/src/lib/components/*"],
       "$web/components": ["apps/web/src/lib/components"],
       "$web/hooks/*": ["apps/web/src/lib/hooks/*"],
