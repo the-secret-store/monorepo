@@ -7,7 +7,7 @@ export function UserSettings() {
     <SettingsStyleWrapper>
       <NavBar />
       <div className="container">
-        <h1>Settings</h1>
+        <h1 className="page-title">Settings</h1>
 
         <div className="setting">
           <h2>

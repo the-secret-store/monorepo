@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const SettingsStyleWrapper = styled.div`
   h1 {
-    font-size: 2.5rem;
     margin-bottom: 3rem;
   }
 

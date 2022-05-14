@@ -14,10 +14,6 @@ export const ProjectOverviewStyleWrapper = styled.div`
       align-items: baseline;
     }
 
-    h1 {
-      font-size: 2.6rem;
-    }
-
     h6 {
       font-size: 1.4rem;
     }

@@ -103,4 +103,8 @@ export const GlobalStyles = createGlobalStyle`
     width: 80%;
     margin: 4rem auto;
   }
+
+  .page-title {
+    font-size: 2.6rem;
+  }
 `;

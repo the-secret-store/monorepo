@@ -11,7 +11,7 @@ export function ProjectOverview() {
             <h6>@krish_the_dev</h6>
           </div>
           <div className="row">
-            <h1>Project Name</h1>
+            <h1 className="page-title">Project Name</h1>
             <p>Last updated: Yesterday</p>
             <p>Created: Yesterday</p>
           </div>
