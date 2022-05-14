@@ -6,12 +6,12 @@ export function Projects() {
   const projects = getProjects();
 
   return (
-    <>
+    <ProjectListPageWrapper>
       <NavBar />
-      <ProjectListPageWrapper>
-        <h1>Projects</h1>
+      <div className="container">
+        <h1 className="page-title">Projects</h1>
         <ProjectList projects={projects} />
-      </ProjectListPageWrapper>
-    </>
+      </div>
+    </ProjectListPageWrapper>
   );
 }
