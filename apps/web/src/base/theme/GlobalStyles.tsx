@@ -56,6 +56,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.black};
     color: ${({ theme }) => theme.colors.white};
+    font-size: 1.6rem;
   }
 
   a {
@@ -89,7 +90,11 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1.8rem;
   }
 
-  h6, div, p, div, span, input, a, button {
+  h6 {
     font-size: 1.6rem;
+  }
+
+  div, p, span, input, a, button {
+    font-size: inherit;
   }
 `;
