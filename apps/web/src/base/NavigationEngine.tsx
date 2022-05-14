@@ -3,6 +3,7 @@ import { LandingPage } from '../views';
 import { Login } from '../views/auth';
 import { ProjectOverview, Projects } from '../views/projects';
 import { TestPage } from '../views/Test';
+import { UserSettings } from '../views/user';
 import { Error404 } from './error/404';
 
 export function NavigationEngine() {
@@ -14,6 +15,10 @@ export function NavigationEngine() {
       <Route path="/projects" element={<Outlet />}>
         <Route index element={<Projects />} />
         <Route path=":projectId" element={<ProjectOverview />} />
+      </Route>
+
+      <Route path="/user" element={<Outlet />}>
+        <Route path="settings" element={<UserSettings />} />
       </Route>
 
       <Route path="*" element={<Error404 />} />
