@@ -96,6 +96,7 @@ export const GlobalStyles = createGlobalStyle`
 
   div, p, span, input, a, button {
     font-size: inherit;
+    font-weight: 300;
   }
 
   .container {
