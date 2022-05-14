@@ -1,18 +1,22 @@
+import { useEffect } from 'react';
 import { Google as GoogleIcon } from '@styled-icons/boxicons-logos/Google';
 import { LogoPng } from '$web/assets/images';
+import { useAuthApi } from '$web/base/auth';
 import { Button } from '$web/components/Button';
-import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { LoginStyleWrapper } from './login.style';
 
 export function Login() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { setAuthToken } = useAuthApi();
   const token = searchParams.get('token');
 
   useEffect(() => {
-    if (token) navigate('/projects', { replace: true });
-  }, [token, navigate]);
+    if (!token) return;
+    navigate('/projects', { replace: true });
+    setAuthToken(token);
+  }, [token, navigate, setAuthToken]);
 
   return (
     <LoginStyleWrapper>
