@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 
 export const ProjectOverviewStyleWrapper = styled.div`
-  .container {
-    max-width: 100rem;
-    width: 80%;
-    margin: 4rem auto;
-  }
-
   header.project-info {
     display: flex;
     flex-direction: column;

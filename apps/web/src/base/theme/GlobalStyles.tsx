@@ -97,4 +97,10 @@ export const GlobalStyles = createGlobalStyle`
   div, p, span, input, a, button {
     font-size: inherit;
   }
+
+  .container {
+    max-width: 100rem;
+    width: 80%;
+    margin: 4rem auto;
+  }
 `;
