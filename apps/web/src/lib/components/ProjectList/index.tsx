@@ -8,7 +8,7 @@ export function ProjectList(props: ProjectListProps) {
       {props.projects.map(project => {
         return (
           <li key={project.id}>
-            <Link className="link" to={`/project/${project.id}`}>
+            <Link className="link" to={`/projects/${project.id}`}>
               <p>{project.name}</p>
 
               {project.gitUrl && (
