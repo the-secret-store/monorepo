@@ -27,8 +27,8 @@
       "$web/components": ["apps/web/src/lib/components"],
       "$web/hooks/*": ["apps/web/src/lib/hooks/*"],
       "$web/hooks": ["apps/web/src/lib/hooks"],
-      "$web/views/*": ["apps/web/src/lib/views/*"],
-      "$web/views": ["apps/web/src/lib/views"]
+      "$web/views/*": ["apps/web/src/views/*"],
+      "$web/views": ["apps/web/src/views"]
     }
   },
   "exclude": ["node_modules", "tmp"]

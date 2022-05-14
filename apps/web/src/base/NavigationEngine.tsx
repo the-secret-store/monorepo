@@ -1,9 +1,9 @@
+import { LandingPage } from '$web/views';
+import { Login } from '$web/views/auth';
+import { ProjectOverview, Projects } from '$web/views/projects';
+import { TestPage } from '$web/views/Test';
+import { UserSettings } from '$web/views/user';
 import { Outlet, Route, Routes } from 'react-router-dom';
-import { LandingPage } from '../views';
-import { Login } from '../views/auth';
-import { ProjectOverview, Projects } from '../views/projects';
-import { TestPage } from '../views/Test';
-import { UserSettings } from '../views/user';
 import { Error404 } from './error/404';
 
 export function NavigationEngine() {
