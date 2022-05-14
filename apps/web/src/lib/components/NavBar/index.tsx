@@ -14,7 +14,7 @@ export function NavBar() {
     <NavBarStyleWrapper>
       <div className="brand">
         <img src={LogoPng} alt="logo" />
-        <caption>The Secret Store</caption>
+        <h2>The Secret Store</h2>
       </div>
       <ul className="links">
         <li>

@@ -5,7 +5,7 @@ import { LogoPng } from '$web/assets/images';
 import { useAuthApi } from '$web/base/auth';
 import { Button } from '$web/components/Button';
 import { Requests } from '$web/constants';
-import { getBaseUrl } from '$web/util/getBaseUrl';
+import { getBaseUrl } from '$web/util';
 import { LoginStyleWrapper } from './login.style';
 
 export function Login() {

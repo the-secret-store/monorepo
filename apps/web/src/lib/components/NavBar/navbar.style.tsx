@@ -18,8 +18,9 @@ export const NavBarStyleWrapper = styled.nav`
       width: 3.6rem;
     }
 
-    caption {
+    h2 {
       font-size: 2.4rem;
+      font-weight: 300;
       color: ${({ theme }) => theme.colors.purple};
     }
   }
