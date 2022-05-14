@@ -5,12 +5,14 @@ export const AuthContext = createContext<AuthContextType>({
   session: new SessionManager(),
   isAuthenticated: false,
   setAuthToken: old => old,
+  logout: () => null,
 });
 
 type AuthContextType = {
   session: SessionManager;
   isAuthenticated: boolean;
   setAuthToken: (token: string) => void;
+  logout: () => void;
 };
 
 export const AuthProvider = AuthContext.Provider;
@@ -21,17 +23,21 @@ export function AuthEngine({ children }: AuthEngineProps) {
   const session = new SessionManager();
   const [isAuthenticated, setAuthenticationFlag] = useState(() => session.isAuthenticated());
 
-  function setAuthToken(token: string) {
-    if (token.length === 0) {
-      session.clearSession();
-      setAuthenticationFlag(false);
-    } else {
-      session.setSession(token);
-      setAuthenticationFlag(true);
-    }
-  }
+  const setAuthToken = (token: string) => {
+    session.setSession(token);
+    setAuthenticationFlag(true);
+  };
 
-  return <AuthProvider value={{ session, isAuthenticated, setAuthToken }}>{children}</AuthProvider>;
+  const logout = () => {
+    session.clearSession();
+    setAuthenticationFlag(false);
+  };
+
+  return (
+    <AuthProvider value={{ session, isAuthenticated, setAuthToken, logout }}>
+      {children}
+    </AuthProvider>
+  );
 }
 
 interface AuthEngineProps {
