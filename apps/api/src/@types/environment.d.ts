@@ -21,6 +21,7 @@ declare global {
       JWT_VALIDITY_CLI: string;
 
       SECRETS_ENCRYPTION_KEY: string;
+      CLIENT_URL: string;
     }
   }
 }

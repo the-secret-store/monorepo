@@ -59,6 +59,9 @@ class EnvironmentVariables {
 
   @IsString()
   SECRETS_ENCRYPTION_KEY?: string;
+
+  @IsString()
+  CLIENT_URL?: string = 'http://localhost:4200';
 }
 
 export function validateConfig(config: Record<string, unknown>) {
