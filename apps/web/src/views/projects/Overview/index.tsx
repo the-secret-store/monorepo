@@ -40,6 +40,7 @@ export function ProjectOverview() {
         <div className="actions">
           <div className="left">
             <Button>Save</Button>
+            <Button link="./show-secrets-as-json">Show Secrets as JSON</Button>
             <Button>Options</Button>
           </div>
 

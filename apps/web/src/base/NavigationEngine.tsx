@@ -1,6 +1,6 @@
 import { LandingPage } from '$web/views';
 import { Login } from '$web/views/auth';
-import { CreateProject, ProjectOverview, Projects } from '$web/views/projects';
+import { CreateProject, ProjectOverview, Projects, ShowSecretsAsJson } from '$web/views/projects';
 import { TestPage } from '$web/views/Test';
 import { UserSettings } from '$web/views/user';
 import { Outlet, Route, Routes } from 'react-router-dom';
@@ -15,7 +15,10 @@ export function NavigationEngine() {
       <Route path="/projects" element={<Outlet />}>
         <Route index element={<Projects />} />
         <Route path="create" element={<CreateProject />} />
-        <Route path=":projectId" element={<ProjectOverview />} />
+        <Route path=":projectId" element={<Outlet />}>
+          <Route index element={<ProjectOverview />} />
+          <Route path="show-secrets-as-json" element={<ShowSecretsAsJson />} />
+        </Route>
       </Route>
 
       <Route path="/user" element={<Outlet />}>
