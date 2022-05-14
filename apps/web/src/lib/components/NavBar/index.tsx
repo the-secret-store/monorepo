@@ -1,8 +1,15 @@
-import { Link } from 'react-router-dom';
-import { NavBarStyleWrapper } from './navbar.style';
 import { LogoPng } from '$web/assets/images';
+import { useAuthApi } from '$web/base/auth';
+import { Cog as Settings, LogOut } from '@styled-icons/boxicons-regular';
+import { Link, useNavigate } from 'react-router-dom';
+import { NavBarStyleWrapper } from './navbar.style';
 
 export function NavBar() {
+  const { session, logout } = useAuthApi();
+  const navigate = useNavigate();
+
+  const openSettings = () => navigate('/user/settings');
+
   return (
     <NavBarStyleWrapper>
       <div className="brand">
@@ -15,8 +22,10 @@ export function NavBar() {
         </li>
       </ul>
       <div className="user">
-        <span>User</span>
-        <img src="https://source.unsplash.com/WNoLnJo7tS8/100x100" alt="user" />
+        <span>{session.getDisplayName()}</span>
+        <img src={session.getAvatarUrl()} alt="user" />
+        <LogOut className="text-btn" size={20} onClick={logout} />
+        <Settings className="text-btn" size={20} onClick={openSettings} />
       </div>
     </NavBarStyleWrapper>
   );

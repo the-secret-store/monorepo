@@ -41,4 +41,8 @@ export const NavBarStyleWrapper = styled.nav`
       border-radius: 100%;
     }
   }
+
+  .text-btn {
+    cursor: pointer;
+  }
 `;
