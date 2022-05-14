@@ -28,6 +28,21 @@ export class ProjectController {
     return { message: 'Accessible projects retrieved successfully', result: projects };
   }
 
+  @Patch('/:projectId/remove-access')
+  async removeAccess(
+    @CurrentUser() currentUser: AuthPayload,
+    @Body('userId') userId: string,
+    @Param('projectId') projectId: string
+  ) {
+    if (!isMongoId(projectId)) throw new BadRequestException({ message: 'Not a valid project id' });
+    const result = await this.projectService.removeAccess(
+      ObjectId(currentUser.id),
+      ObjectId(projectId),
+      ObjectId(userId)
+    );
+    return { message: 'Access removed successfully', result };
+  }
+
   @Get('/:projectId')
   async projectInformation(
     @CurrentUser() user: AuthPayload,

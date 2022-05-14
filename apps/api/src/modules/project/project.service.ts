@@ -158,4 +158,22 @@ export class ProjectService {
 
     return accessibleProjects;
   }
+
+  async removeAccess(currentUser: ObjectIdType, projectId: ObjectIdType, userId: ObjectIdType) {
+    const project = await this.checkAccessAndFindProject(
+      currentUser,
+      projectId,
+      ProjectAccessLevel.OWNER
+    );
+
+    if (project.collaborators.some(collaborator => collaborator.equals(userId))) {
+      project.collaborators = project.collaborators.filter(
+        collaborator => !collaborator.equals(userId)
+      );
+    } else if (project.members.some(member => member.equals(userId))) {
+      project.members = project.members.filter(member => !member.equals(userId));
+    }
+
+    await this.repo.save(project);
+  }
 }
