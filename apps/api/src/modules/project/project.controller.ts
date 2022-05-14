@@ -28,6 +28,13 @@ export class ProjectController {
     return { message: 'Accessible projects retrieved successfully', result: projects };
   }
 
+  @Get('/:projectId/access')
+  async getUsersWithAccess(@Param('projectId') projectId: ObjectIdType) {
+    if (!isMongoId(projectId)) throw new BadRequestException('Invalid project id');
+    const usersWithAccess = await this.projectService.getAllUsersWithAccess(ObjectId(projectId));
+    return { message: 'Users with access retrieved successfully', result: usersWithAccess };
+  }
+
   @Patch('/:projectId/remove-access')
   async removeAccess(
     @CurrentUser() currentUser: AuthPayload,
