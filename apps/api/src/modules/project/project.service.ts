@@ -161,29 +161,31 @@ export class ProjectService {
 
   async getAllUsersWithAccess(projectId: ObjectIdType) {
     const project = await this.findById(projectId);
-    const usersWithAccess = project.collaborators.map(async collaborator => {
-      const { avatarUrl, displayName } = await this.userService.findById(collaborator);
-      return {
-        id: collaborator,
-        accessLevel: 'collaborator',
-        name: displayName,
-        avatar: avatarUrl,
-      };
-    });
-
-    usersWithAccess.concat(
-      project.members.map(async member => {
-        const { avatarUrl, displayName } = await this.userService.findById(member);
+    const usersWithAccess = await Promise.all(
+      project.collaborators.map(async collaborator => {
+        const { avatarUrl, displayName } = await this.userService.findById(collaborator);
         return {
-          id: member,
-          accessLevel: 'member',
+          id: collaborator,
+          accessLevel: 'collaborator',
           name: displayName,
           avatar: avatarUrl,
         };
       })
     );
 
-    return usersWithAccess;
+    return usersWithAccess.concat(
+      await Promise.all(
+        project.members.map(async member => {
+          const { avatarUrl, displayName } = await this.userService.findById(member);
+          return {
+            id: member,
+            accessLevel: 'member',
+            name: displayName,
+            avatar: avatarUrl,
+          };
+        })
+      )
+    );
   }
 
   async removeAccess(currentUser: ObjectIdType, projectId: ObjectIdType, userId: ObjectIdType) {
