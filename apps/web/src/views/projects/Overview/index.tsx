@@ -73,7 +73,7 @@ export function ProjectOverview() {
           </div>
 
           <div className="right">
-            <Button variant="error">
+            <Button variant="error" link={`/projects/${project.id}/settings`} state={project}>
               <Settings size={20} /> Settings
             </Button>
           </div>

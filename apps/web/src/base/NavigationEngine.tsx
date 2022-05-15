@@ -5,6 +5,7 @@ import {
   InviteUserPage,
   ProjectOverview,
   Projects,
+  ProjectSettings,
   ShowSecretsAsJson,
 } from '$web/views/projects';
 import { TestPage } from '$web/views/Test';
@@ -29,6 +30,7 @@ export function NavigationEngine() {
           <Route path="create" element={<CreateProject />} />
           <Route path=":projectId" element={<Outlet />}>
             <Route index element={<ProjectOverview />} />
+            <Route path="settings" element={<ProjectSettings />} />
             <Route path="invite" element={<InviteUserPage />} />
             <Route path="show-secrets-as-json" element={<ShowSecretsAsJson />} />
           </Route>
