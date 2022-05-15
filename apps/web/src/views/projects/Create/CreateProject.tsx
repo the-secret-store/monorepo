@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 import { InfoCircle } from '@styled-icons/bootstrap/InfoCircle';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Button, TextInput } from '$web/components';
@@ -24,12 +25,25 @@ export function CreateProject() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const toastId = toast.loading('Creating your project...');
     try {
       const project = await createProject();
+      toast.update(toastId, {
+        render: `Project ${project.name} created`,
+        isLoading: false,
+        type: 'success',
+        autoClose: 3000,
+      });
       console.debug(project);
 
       navigate(`/projects/${project.id}`, { state: project });
     } catch (error) {
+      toast.update(toastId, {
+        type: 'error',
+        isLoading: false,
+        render: 'There was an error creating the project',
+        autoClose: 8000,
+      });
       console.error((error as AxiosError).response?.data);
     }
   };
