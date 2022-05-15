@@ -20,6 +20,11 @@ declare global {
       JWT_VALIDITY_BROWSER: string;
       JWT_VALIDITY_CLI: string;
 
+      MAIL_HOST: string;
+      MAIL_PORT: number;
+      MAIL_EMAIL: string;
+      MAIL_PASS: string;
+
       SECRETS_ENCRYPTION_KEY: string;
       CLIENT_URL: string;
     }
