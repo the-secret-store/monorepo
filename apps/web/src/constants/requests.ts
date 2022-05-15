@@ -10,4 +10,7 @@ export const Requests = {
   invitations: {
     INVITE_TO_PROJECT: 'invitation/invite-to-project',
   },
+  users: {
+    GENERATE_TOKEN: 'user/generate-token',
+  },
 };
