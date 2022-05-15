@@ -43,7 +43,10 @@ export function ProjectOverview() {
         <div className="actions">
           <div className="left">
             <Button>Save</Button>
-            <Button link="./show-secrets-as-json" state={project.secrets}>
+            <Button
+              link="./show-secrets-as-json"
+              state={{ secrets: project.secrets, name: project.name }}
+            >
               Show Secrets as JSON
             </Button>
             <Button>Options</Button>
