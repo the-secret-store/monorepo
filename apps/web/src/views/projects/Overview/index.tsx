@@ -5,8 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 
 export function ProjectOverview() {
-  const location = useLocation();
-  const project = location.state as IProject;
+  const project = useLocation().state as IProject;
 
   return (
     <ProjectOverviewStyleWrapper>
@@ -44,7 +43,9 @@ export function ProjectOverview() {
         <div className="actions">
           <div className="left">
             <Button>Save</Button>
-            <Button link="./show-secrets-as-json">Show Secrets as JSON</Button>
+            <Button link="./show-secrets-as-json" state={project.secrets}>
+              Show Secrets as JSON
+            </Button>
             <Button>Options</Button>
           </div>
 
