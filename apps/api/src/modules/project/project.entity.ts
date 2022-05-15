@@ -1,4 +1,3 @@
-import { ProjectScope } from '@the-secret-store/api-interfaces/enums';
 import { ObjectId } from 'mongodb';
 import {
   BeforeInsert,
@@ -9,9 +8,11 @@ import {
   ObjectIdColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ProjectScope } from '@the-secret-store/api-interfaces/enums';
+import { IProject } from '@the-secret-store/api-interfaces/entities';
 
 @Entity()
-export class Project {
+export class Project implements IProject {
   @ObjectIdColumn()
   readonly id: ObjectId;
 
