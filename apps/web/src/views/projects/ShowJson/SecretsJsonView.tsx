@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
-import { Button } from '$web/components/Button';
+import { Button } from '$web/components';
 import { ShowJsonStyleWrapper } from './show-json.style';
 
 export function ShowSecretsAsJson() {
