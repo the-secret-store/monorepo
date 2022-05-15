@@ -31,7 +31,7 @@ class EnvironmentVariables {
   DB_NAME?: string = 'tss-dev';
 
   @IsString()
-  DB_HOST?: string = 'localhost';
+  DB_HOST?: string = '127.0.0.1';
 
   @IsNumber()
   DB_PORT?: number = 27_017;
@@ -61,7 +61,7 @@ class EnvironmentVariables {
   SECRETS_ENCRYPTION_KEY?: string;
 
   @IsString()
-  CLIENT_URL?: string = 'http://localhost:4200';
+  CLIENT_URL?: string = 'http://127.0.0.1:4200';
 }
 
 export function validateConfig(config: Record<string, unknown>) {

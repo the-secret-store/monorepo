@@ -12,7 +12,7 @@ export class GoogleStrategy extends PassportStrategy(GooglePassportOauthStrategy
     super({
       clientID: configService.get<AuthConfig>('auth').google.clientId,
       clientSecret: configService.get<AuthConfig>('auth').google.clientSecret,
-      callbackURL: `http://localhost:${
+      callbackURL: `http://127.0.0.1:${
         configService.get<RootConfig>('root').port
       }/auth/google/success`,
       scope: ['email', 'profile'],

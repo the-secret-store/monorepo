@@ -5,5 +5,5 @@ export function getBaseUrl() {
     throw new Error('REACT_APP_API_URL is not defined');
   }
 
-  return isDev ? 'http://localhost:3000' : process.env.REACT_APP_API_URL;
+  return isDev ? 'http://127.0.0.1:3000' : process.env.REACT_APP_API_URL;
 }
