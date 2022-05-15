@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Git } from '@styled-icons/boxicons-logos/Git';
+import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { ProjectListStyleWrapper } from './project-list.style';
 
 export function ProjectList(props: ProjectListProps) {
@@ -7,7 +8,7 @@ export function ProjectList(props: ProjectListProps) {
     <ProjectListStyleWrapper>
       {props.projects.map(project => {
         return (
-          <li key={project.id}>
+          <li key={project.id.toString()}>
             <Link className="link" to={`/projects/${project.id}`}>
               <p>{project.name}</p>
 
@@ -25,11 +26,5 @@ export function ProjectList(props: ProjectListProps) {
 }
 
 interface ProjectListProps {
-  projects: Project[];
-}
-
-export interface Project {
-  id: string;
-  name: string;
-  gitUrl?: string;
+  projects: IProject[];
 }
