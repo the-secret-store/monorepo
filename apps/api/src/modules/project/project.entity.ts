@@ -57,5 +57,7 @@ export class Project implements IProject {
     if (!this.owner) this.owner = this.createdBy;
     if (!this.collaborators) this.collaborators = [];
     if (!this.members) this.members = [];
+    if (!this.secrets) this.secrets = {};
+    if (!this.backup) this.backup = {};
   }
 }
