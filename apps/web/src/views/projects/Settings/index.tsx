@@ -47,7 +47,7 @@ export function ProjectSettings() {
                 <h2>Users with access</h2>
                 <p>({usersWithAccess.length})</p>
               </div>
-              <Button link={`/projects/${project.id}/invite`}>
+              <Button link={`/projects/${project.id}/invite`} state={project}>
                 <UserPlus size={20} />
                 Invite
               </Button>
