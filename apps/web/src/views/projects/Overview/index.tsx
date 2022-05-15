@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
-import { LockShield } from '@styled-icons/fluentui-system-regular/LockShield';
+import { LockShield } from '@styled-icons/fluentui-system-regular';
+import { Braces, Save, Settings } from '@styled-icons/remix-line';
 import { Eye, EyeSlash } from '@styled-icons/bootstrap';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Button, Chip, TableRow, TableView, TextInput } from '$web/components';
@@ -58,18 +59,23 @@ export function ProjectOverview() {
 
         <div className="actions">
           <div className="left">
-            <Button>Save</Button>
+            <Button>
+              <Save size={20} />
+              Save
+            </Button>
             <Button
               link="./show-secrets-as-json"
               state={{ secrets: project.secrets, name: project.name }}
             >
-              Show Secrets as JSON
+              <Braces size={20} />
+              View JSON
             </Button>
-            <Button>Options</Button>
           </div>
 
           <div className="right">
-            <Button variant="error">Delete Project</Button>
+            <Button variant="error">
+              <Settings size={20} /> Settings
+            </Button>
           </div>
         </div>
       </div>
