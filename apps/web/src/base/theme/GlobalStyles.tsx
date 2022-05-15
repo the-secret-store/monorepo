@@ -107,5 +107,8 @@ export const GlobalStyles = createGlobalStyle`
 
   .page-title {
     font-size: 2.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
 `;

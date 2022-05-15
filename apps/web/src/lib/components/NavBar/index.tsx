@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Cog as Settings, LogOut, UserCircle } from '@styled-icons/boxicons-regular';
+import { Settings, LogoutCircleR, AccountCircle } from '@styled-icons/remix-line';
 import { LogoPng } from '$web/assets/images';
 import { useAuthApi } from '$web/base/auth';
 import { NavBarStyleWrapper } from './navbar.style';
@@ -33,8 +33,8 @@ export function NavBar() {
       </ul>
       <div className="user">
         <span>{session.getDisplayName()}</span>
-        {!avatar ? <img src={avatar} alt="user" /> : <UserCircle size={24} />}
-        <LogOut className="text-btn" size={20} onClick={logout} />
+        {!avatar ? <img src={avatar} alt="user" /> : <AccountCircle size={24} />}
+        <LogoutCircleR className="text-btn" size={20} onClick={logout} />
         <Settings className="text-btn" size={20} onClick={openSettings} />
       </div>
     </NavBarStyleWrapper>
