@@ -49,7 +49,7 @@ export function ProjectOverview() {
               )}
             </p>
           </TableRow>
-          {Object.entries(project.secrets).map(([key, value]) => (
+          {Object.entries(project.secrets ?? {}).map(([key, value]) => (
             <TableRow key={key}>
               <TextInput value={key} />
               <TextInput type={showValues ? 'text' : 'password'} value={value} />
