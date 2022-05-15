@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import { LockShield } from '@styled-icons/fluentui-system-regular/LockShield';
+import { Eye, EyeSlash } from '@styled-icons/bootstrap';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Button, Chip, TableRow, TableView, TextInput } from '$web/components';
 import { ProjectOverviewStyleWrapper } from './project-overview.style';
 
 export function ProjectOverview() {
   const project = useLocation().state as IProject;
+  const [showValues, setShowValues] = useState(false);
+
+  const toggleValueVisibility = () => setShowValues(o => !o);
 
   return (
     <ProjectOverviewStyleWrapper>
@@ -34,12 +39,19 @@ export function ProjectOverview() {
         <TableView>
           <TableRow>
             <p>Key</p>
-            <p>Value</p>
+            <p className="value-head">
+              Value
+              {!showValues ? (
+                <Eye size={20} onClick={toggleValueVisibility} />
+              ) : (
+                <EyeSlash size={20} onClick={toggleValueVisibility} />
+              )}
+            </p>
           </TableRow>
           {Object.entries(project.secrets).map(([key, value]) => (
             <TableRow key={key}>
               <TextInput value={key} />
-              <TextInput value={value} />
+              <TextInput type={showValues ? 'text' : 'password'} value={value} />
             </TableRow>
           ))}
         </TableView>

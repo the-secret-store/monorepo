@@ -20,6 +20,16 @@ export const ProjectOverviewStyleWrapper = styled.div`
     }
   }
 
+  .value-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    svg {
+      cursor: pointer;
+    }
+  }
+
   .actions {
     display: flex;
     gap: 1rem;
