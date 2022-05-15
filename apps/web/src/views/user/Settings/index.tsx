@@ -9,7 +9,7 @@ export function UserSettings() {
       <div className="container">
         <h1 className="page-title">
           <Settings size={30} />
-          Settings
+          User Settings
         </h1>
 
         <div className="setting">
