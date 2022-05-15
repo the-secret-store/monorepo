@@ -1,12 +1,22 @@
+import { useCallback, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Cog as Settings, LogOut, UserCircle } from '@styled-icons/boxicons-regular';
 import { LogoPng } from '$web/assets/images';
 import { useAuthApi } from '$web/base/auth';
-import { Cog as Settings, LogOut } from '@styled-icons/boxicons-regular';
-import { Link, useNavigate } from 'react-router-dom';
 import { NavBarStyleWrapper } from './navbar.style';
 
 export function NavBar() {
   const { session, logout } = useAuthApi();
   const navigate = useNavigate();
+  const [avatar, setAvatar] = useState<string | undefined>(undefined);
+
+  const loadImage = useCallback(async () => {
+    return await (await fetch(session.getAvatarUrl())).blob();
+  }, [session]);
+
+  useEffect(() => {
+    loadImage().then(img => setAvatar(URL.createObjectURL(img)));
+  }, [loadImage]);
 
   const openSettings = () => navigate('/user/settings');
 
@@ -23,7 +33,7 @@ export function NavBar() {
       </ul>
       <div className="user">
         <span>{session.getDisplayName()}</span>
-        <img src={session.getAvatarUrl()} alt="user" />
+        {!avatar ? <img src={avatar} alt="user" /> : <UserCircle size={24} />}
         <LogOut className="text-btn" size={20} onClick={logout} />
         <Settings className="text-btn" size={20} onClick={openSettings} />
       </div>
