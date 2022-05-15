@@ -28,6 +28,16 @@ export const TextInputStyleWrapper = styled.div<{ state: InputElementStates }>`
     &:focus + label {
       color: ${({ theme }) => theme.colors.purple};
     }
+
+    &:disabled {
+      background-color: ${({ theme }) => theme.colors.black};
+      color: ${props => props.theme.colors.slate};
+      cursor: not-allowed;
+
+      &:focus {
+        border: 2px solid ${({ theme }) => theme.colors.dark};
+      }
+    }
   }
 `;
 
