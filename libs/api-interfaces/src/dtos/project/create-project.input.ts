@@ -1,4 +1,4 @@
-import { IsEnum, IsOptional, IsString, IsUrl } from 'class-validator';
+import { IsEnum, IsOptional, IsString, IsUrl, ValidateIf } from 'class-validator';
 import * as generate from 'project-name-generator';
 import { ProjectScope } from '../../enums';
 
@@ -9,6 +9,7 @@ export class CreateProjectInputDto {
   @IsEnum(ProjectScope)
   scope?: ProjectScope = ProjectScope.Personal;
 
+  @ValidateIf(thisProject => thisProject.gitUrl !== '')
   @IsOptional()
   @IsUrl()
   gitUrl?: string;
