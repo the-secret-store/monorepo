@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export const ProjectListPageWrapper = styled.main`
-  h1 {
-    margin-bottom: 1em;
+  header {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
