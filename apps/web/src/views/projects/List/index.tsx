@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { New as NewIcon } from '@styled-icons/fluentui-system-filled/New';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
-import { Button, NavBar, ProjectList } from '$web/components';
+import { Button, ProjectList } from '$web/components';
 import { Requests } from '$web/constants';
 import { useRequest } from '$web/hooks';
 import { ProjectListPageWrapper } from './project-list.page.style';
@@ -21,7 +21,6 @@ export function Projects() {
 
   return (
     <ProjectListPageWrapper>
-      <NavBar />
       <div className="container">
         <header>
           <h1 className="page-title">Projects</h1>

@@ -1,11 +1,10 @@
 import { Key } from '@styled-icons/fluentui-system-regular/Key';
-import { Button, NavBar } from '$web/components';
+import { Button } from '$web/components';
 import { SettingsStyleWrapper } from './settings.style';
 
 export function UserSettings() {
   return (
     <SettingsStyleWrapper>
-      <NavBar />
       <div className="container">
         <h1 className="page-title">Settings</h1>
 

@@ -1,13 +1,10 @@
 import { InfoCircle } from '@styled-icons/bootstrap/InfoCircle';
-import { NavBar } from '$web/components/NavBar';
-import { TextInput } from '$web/components/TextInput';
+import { Button, TextInput } from '$web/components';
 import { CreateProjectStyleWrapper } from './create-project.style';
-import { Button } from '$web/components/Button';
 
 export function CreateProject() {
   return (
     <CreateProjectStyleWrapper>
-      <NavBar />
       <div className="container">
         <h1 className="page-title">Create Project</h1>
 

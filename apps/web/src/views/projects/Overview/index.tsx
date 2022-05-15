@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import { LockShield } from '@styled-icons/fluentui-system-regular/LockShield';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
-import { Button, Chip, NavBar, TableRow, TableView, TextInput } from '$web/components';
+import { Button, Chip, TableRow, TableView, TextInput } from '$web/components';
 import { ProjectOverviewStyleWrapper } from './project-overview.style';
 
 export function ProjectOverview() {
@@ -10,7 +10,6 @@ export function ProjectOverview() {
 
   return (
     <ProjectOverviewStyleWrapper>
-      <NavBar />
       <div className="container">
         <header className="project-info">
           <div className="row">
