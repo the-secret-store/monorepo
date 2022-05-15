@@ -1,8 +1,9 @@
+import { useLocation } from 'react-router-dom';
+import TimeAgo from 'timeago-react';
 import { LockShield } from '@styled-icons/fluentui-system-regular/LockShield';
+import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Button, Chip, NavBar, TableRow, TableView, TextInput } from '$web/components';
 import { ProjectOverviewStyleWrapper } from './project-overview.style';
-import { useLocation } from 'react-router-dom';
-import { IProject } from '@the-secret-store/api-interfaces/entities';
 
 export function ProjectOverview() {
   const project = useLocation().state as IProject;
@@ -17,8 +18,12 @@ export function ProjectOverview() {
           </div>
           <div className="row">
             <h1 className="page-title">{project.name}</h1>
-            <p>Last updated: {new Date(project.updatedAt).toLocaleTimeString()}</p>
-            <p>Created: {new Date(project.createdAt).toLocaleTimeString()}</p>
+            <p>
+              Last updated: <TimeAgo datetime={project.updatedAt} />
+            </p>
+            <p>
+              Created: <TimeAgo datetime={project.createdAt} />
+            </p>
           </div>
           <div className="row">
             <Chip>
