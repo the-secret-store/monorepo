@@ -33,7 +33,7 @@ export function NavBar() {
       </ul>
       <div className="user">
         <span>{session.getDisplayName()}</span>
-        {!avatar ? <img src={avatar} alt="user" /> : <AccountCircle size={24} />}
+        {avatar ? <img src={avatar} alt="user" /> : <AccountCircle size={24} />}
         <LogoutCircleR className="text-btn" size={20} onClick={logout} />
         <Settings className="text-btn" size={20} onClick={openSettings} />
       </div>
