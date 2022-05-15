@@ -3,6 +3,8 @@ import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ThemeProvider } from 'styled-components';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { NavigationEngine } from './NavigationEngine';
 import { UnexpectedError } from './error/UnexpectedError/ErrorBoundary';
@@ -19,6 +21,7 @@ ReactDOM.render(
             <NavigationEngine />
           </BrowserRouter>
         </AuthEngine>
+        <ToastContainer />
       </ErrorBoundary>
     </ThemeProvider>
   </StrictMode>,
