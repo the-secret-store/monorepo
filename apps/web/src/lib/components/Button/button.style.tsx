@@ -21,6 +21,15 @@ export const ButtonStyleWrapper = styled.button<{ variant: ButtonVariants }>`
     box-shadow: 0 0 1rem
       ${props => props.theme.colors[props.variant === 'primary' ? 'purple' : 'red']};
   }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.slate};
+    cursor: not-allowed;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
 `;
 
 export type ButtonVariants = 'primary' | 'error';
