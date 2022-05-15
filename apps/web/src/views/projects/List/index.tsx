@@ -7,7 +7,7 @@ import { useRequest } from '$web/hooks';
 import { ProjectListPageWrapper } from './project-list.page.style';
 
 export function Projects() {
-  const { request } = useRequest();
+  const request = useRequest();
   const [projects, setProjects] = useState<IProject[]>();
 
   const getProjects = useCallback(

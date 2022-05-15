@@ -10,7 +10,7 @@ import { CreateProjectStyleWrapper } from './create-project.style';
 
 export function CreateProject() {
   const [values, setValues] = useState({});
-  const { request } = useRequest();
+  const request = useRequest();
   const navigate = useNavigate();
 
   const createProject = async (): Promise<IProject> => {

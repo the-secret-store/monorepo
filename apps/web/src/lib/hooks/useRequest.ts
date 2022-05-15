@@ -36,5 +36,5 @@ export function useRequest() {
     return instance;
   }, [session, auth, setAuthToken]);
 
-  return { request: instance };
+  return instance;
 }
