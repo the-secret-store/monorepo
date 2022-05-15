@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AxiosError } from 'axios';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Button, TextInput } from '$web/components';
 import { Requests } from '$web/constants';
@@ -12,12 +13,6 @@ export function InviteUserPage() {
   const project = useLocation().state as IProject;
   const request = useRequest();
 
-  const inviteToProject = async () => {
-    return (
-      await request.post(Requests.invitations.INVITE_TO_PROJECT, { email, projectId: project.id })
-    ).data;
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setEmail(value);
@@ -25,11 +20,24 @@ export function InviteUserPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const toastId = toast.loading('Sending invitation...');
 
     try {
-      const invitation = await inviteToProject();
-      console.log(invitation);
+      await request.post(Requests.invitations.INVITE_TO_PROJECT, { email, projectId: project.id });
+      toast.update(toastId, {
+        render: `Invitation sent to ${email}`,
+        isLoading: false,
+        type: 'success',
+        autoClose: 3000,
+      });
     } catch (error) {
+      toast.update(toastId, {
+        type: 'error',
+        isLoading: false,
+        render: 'There was an error inviting the user',
+        autoClose: 8000,
+      });
+
       console.error((error as AxiosError).response);
     }
   };
