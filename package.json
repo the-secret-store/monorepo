@@ -10,12 +10,6 @@
   },
   "private": true,
   "dependencies": {
-    "@mantine/core": "^4.1.1",
-    "@mantine/form": "^4.1.1",
-    "@mantine/hooks": "^4.1.1",
-    "@mantine/modals": "^4.1.1",
-    "@mantine/prism": "^4.1.1",
-    "@mantine/rte": "^4.1.1",
     "@nestjs-modules/mailer": "^1.6.1",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.0.0",
