@@ -17,31 +17,31 @@ import { AuthRoute, ProtectedRoute } from './routes';
 export function NavigationEngine() {
   return (
     <Routes>
-      <Route element={<AuthRoute redirect="/projects" />}>
-        <Route path="/auth/login" element={<Login />} />
+      <Route element={<AuthRoute redirect='/projects' />}>
+        <Route path='/auth/login' element={<Login />} />
       </Route>
 
       <Route index element={<LandingPage />} />
 
       <Route element={<ProtectedRoute />}>
-        <Route path="/test" element={<TestPage />} />
-        <Route path="/projects" element={<Outlet />}>
+        <Route path='/test' element={<TestPage />} />
+        <Route path='/projects' element={<Outlet />}>
           <Route index element={<Projects />} />
-          <Route path="create" element={<CreateProject />} />
-          <Route path=":projectId" element={<Outlet />}>
+          <Route path='create' element={<CreateProject />} />
+          <Route path=':projectId' element={<Outlet />}>
             <Route index element={<ProjectOverview />} />
-            <Route path="settings" element={<ProjectSettings />} />
-            <Route path="invite" element={<InviteUserPage />} />
-            <Route path="show-secrets-as-json" element={<ShowSecretsAsJson />} />
+            <Route path='settings' element={<ProjectSettings />} />
+            <Route path='invite' element={<InviteUserPage />} />
+            <Route path='show-secrets-as-json' element={<ShowSecretsAsJson />} />
           </Route>
         </Route>
 
-        <Route path="/user" element={<Outlet />}>
-          <Route path="settings" element={<UserSettings />} />
+        <Route path='/user' element={<Outlet />}>
+          <Route path='settings' element={<UserSettings />} />
         </Route>
       </Route>
 
-      <Route path="*" element={<Error404 />} />
+      <Route path='*' element={<Error404 />} />
     </Routes>
   );
 }

@@ -11,6 +11,6 @@ export function ProtectedRoute() {
       <Outlet />
     </>
   ) : (
-    <Navigate to="/auth/login" />
+    <Navigate to='/auth/login' />
   );
 }

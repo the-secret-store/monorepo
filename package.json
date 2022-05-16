@@ -5,16 +5,12 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "format": "prettier '**/*.{ts,tsx,json,md,html,css}' --write"
   },
   "private": true,
   "dependencies": {
-    "@mantine/core": "^4.1.1",
-    "@mantine/form": "^4.1.1",
-    "@mantine/hooks": "^4.1.1",
-    "@mantine/modals": "^4.1.1",
-    "@mantine/prism": "^4.1.1",
-    "@mantine/rte": "^4.1.1",
+    "@nestjs-modules/mailer": "^1.6.1",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",
@@ -30,7 +26,9 @@
     "jwt-decode": "^3.1.2",
     "mongodb": "3.6",
     "morgan": "^1.10.0",
+    "nest-commander": "^2.5.0",
     "nest-morgan": "^2.0.0",
+    "nodemailer": "^6.7.5",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.0",

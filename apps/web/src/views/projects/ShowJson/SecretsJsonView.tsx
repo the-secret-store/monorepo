@@ -13,7 +13,7 @@ export function ShowSecretsAsJson() {
 
   return (
     <ShowJsonStyleWrapper>
-      <h1 className="page-title">{name}</h1>
+      <h1 className='page-title'>{name}</h1>
       <h5>Secrets as JSON</h5>
       <code>{JSON.stringify(secrets, null, '\t')}</code>
       <Button onClick={goBack}>{'<- '}Back</Button>

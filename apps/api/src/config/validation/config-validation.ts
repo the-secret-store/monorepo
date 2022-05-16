@@ -58,6 +58,18 @@ class EnvironmentVariables {
   JWT_VALIDITY_BROWSER?: string = '24h';
 
   @IsString()
+  MAIL_HOST: string;
+
+  @IsNumber()
+  MAIL_PORT: number;
+
+  @IsString()
+  MAIL_EMAIL: string;
+
+  @IsString()
+  MAIL_PASS: string;
+
+  @IsString()
   SECRETS_ENCRYPTION_KEY?: string;
 
   @IsString()

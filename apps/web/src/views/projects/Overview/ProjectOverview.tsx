@@ -16,13 +16,13 @@ export function ProjectOverview() {
 
   return (
     <ProjectOverviewStyleWrapper>
-      <div className="container">
-        <header className="project-info">
-          <div className="row">
+      <div className='container'>
+        <header className='project-info'>
+          <div className='row'>
             <h6>{project.id}</h6>
           </div>
-          <div className="row">
-            <h1 className="page-title">{project.name}</h1>
+          <div className='row'>
+            <h1 className='page-title'>{project.name}</h1>
             <p>
               Last updated: <TimeAgo datetime={project.updatedAt} />
             </p>
@@ -30,7 +30,7 @@ export function ProjectOverview() {
               Created: <TimeAgo datetime={project.createdAt} />
             </p>
           </div>
-          <div className="row">
+          <div className='row'>
             <Chip>
               <LockShield size={14} />
               <span>{project.scope}</span>
@@ -40,7 +40,7 @@ export function ProjectOverview() {
         <TableView>
           <TableRow>
             <p>Key</p>
-            <p className="value-head">
+            <p className='value-head'>
               Value
               {!showValues ? (
                 <Eye size={20} onClick={toggleValueVisibility} />
@@ -57,14 +57,14 @@ export function ProjectOverview() {
           ))}
         </TableView>
 
-        <div className="actions">
-          <div className="left">
+        <div className='actions'>
+          <div className='left'>
             <Button>
               <Save size={20} />
               Save
             </Button>
             <Button
-              link="./show-secrets-as-json"
+              link='./show-secrets-as-json'
               state={{ secrets: project.secrets, name: project.name }}
             >
               <Braces size={20} />
@@ -72,8 +72,8 @@ export function ProjectOverview() {
             </Button>
           </div>
 
-          <div className="right">
-            <Button variant="error" link={`/projects/${project.id}/settings`} state={project}>
+          <div className='right'>
+            <Button variant='error' link={`/projects/${project.id}/settings`} state={project}>
               <Settings size={20} /> Settings
             </Button>
           </div>

@@ -28,20 +28,20 @@ export function ProjectSettings() {
 
   return (
     <ProjectSettingsStyleWrapper>
-      <div className="container">
-        <h1 className="page-title">
+      <div className='container'>
+        <h1 className='page-title'>
           <Settings size={30} /> Project Settings
         </h1>
 
-        <div className="setting">
+        <div className='setting'>
           <h2>Project Name</h2>
           <TextInput value={project.name} disabled />
-          <p className="description">Currently, you are not allowed to change the project name.</p>
+          <p className='description'>Currently, you are not allowed to change the project name.</p>
           <Button disabled>Save</Button>
         </div>
 
         {usersWithAccess && (
-          <div className="users-with-access setting">
+          <div className='users-with-access setting'>
             <header>
               <div>
                 <h2>Users with access</h2>
@@ -55,7 +55,7 @@ export function ProjectSettings() {
 
             <ul>
               {usersWithAccess.map(user => (
-                <li className="user" key={user.id}>
+                <li className='user' key={user.id}>
                   <img src={user.avatar} alt={user.name} />
                   <p>{user.name}</p>
                 </li>

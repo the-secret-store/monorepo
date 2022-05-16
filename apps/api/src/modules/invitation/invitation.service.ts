@@ -1,13 +1,18 @@
 import { BadRequestException, ForbiddenException, Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
+import { MailerService } from '@nestjs-modules/mailer';
+import { ObjectId } from 'mongodb';
+import { ObjectID as ObjectIdType, Repository } from 'typeorm';
+
 import {
   CreateProjectInviteInputDto,
   CreateTeamInviteInputDto,
 } from '@the-secret-store/api-interfaces/dtos/invitation';
 import { Privilege, ProjectAccessLevel } from '@the-secret-store/api-interfaces/enums';
 import { Email } from '@the-secret-store/api-interfaces/types';
-import { ObjectId } from 'mongodb';
-import { ObjectID as ObjectIdType, Repository } from 'typeorm';
+
+import { MiscConfig } from '../../config';
 import { ProjectService } from '../project/project.service';
 import { TeamService } from '../team/team.service';
 import { UserService } from '../user/user.service';
@@ -18,6 +23,8 @@ export class InvitationService {
   constructor(
     @InjectRepository(Invitation) private readonly repo: Repository<Invitation>,
     private readonly logger: Logger,
+    private readonly configService: ConfigService,
+    private readonly mailService: MailerService,
     private readonly projectService: ProjectService,
     private readonly teamService: TeamService,
     private readonly userService: UserService
@@ -43,7 +50,16 @@ export class InvitationService {
 
     await this.repo.save(invitation);
 
-    // todo: add a mailer service
+    await this.mailService.sendMail({
+      to: invitation.recipient,
+      subject: 'Invitation to join a team',
+      html: `
+      <p>You have been invited to join the team '${team.name}' as a ${invitation.privilege}.
+        Click <a href='${
+          this.configService.get<MiscConfig>('misc').clientUrl
+        }/invitation/accept?id=${invitation.id}'>here to accept the invitation</a>.
+      </p>`,
+    });
     this.logger.debug(`Invitation id: ${invitation.id}`, InvitationService.name);
 
     return invitation;
@@ -53,7 +69,7 @@ export class InvitationService {
     inviterId: ObjectIdType,
     { email, projectId, accessLevel }: CreateProjectInviteInputDto
   ) {
-    await this.projectService.checkAccessAndFindProject(
+    const project = await this.projectService.checkAccessAndFindProject(
       inviterId,
       ObjectId(projectId),
       ProjectAccessLevel.OWNER
@@ -69,7 +85,16 @@ export class InvitationService {
 
     await this.repo.save(invitation);
 
-    // todo: add a mailer service
+    await this.mailService.sendMail({
+      to: invitation.recipient,
+      subject: 'Invitation to join a project',
+      html: `
+      <p>You have been invited to join the project '${project.name}' as a ${invitation.accessLevel}.
+        Click <a href='${
+          this.configService.get<MiscConfig>('misc').clientUrl
+        }/invitation/accept?id=${invitation.id}'>here to accept the invitation</a>.
+      </p>`,
+    });
     this.logger.debug(`Invitation id: ${invitation.id}`, InvitationService.name);
 
     return invitation;
