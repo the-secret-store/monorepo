@@ -10,13 +10,4 @@ export const ShowJsonStyleWrapper = styled.main`
   h1 {
     margin-bottom: 1rem;
   }
-
-  pre {
-    padding: 2rem;
-    text-align: left;
-    background-color: ${props => props.theme.colors.dark};
-    color: ${props => props.theme.colors.yellow};
-    border-radius: 1.4rem;
-    margin: 2rem;
-  }
 `;
