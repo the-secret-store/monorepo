@@ -3,7 +3,6 @@ import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ObjectId } from 'mongodb';
 import { ObjectID as ObjectIdType, Repository } from 'typeorm';
-
 import { CreateProjectInputDto } from '@the-secret-store/api-interfaces/dtos/project';
 import { ProjectAccessLevel } from '@the-secret-store/api-interfaces/enums';
 import { EncryptionService } from '../../utils/EncryptionService';

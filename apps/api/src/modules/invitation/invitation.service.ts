@@ -119,6 +119,12 @@ export class InvitationService {
       throw new ForbiddenException({ message: 'You are not the recipient of this invitation' });
     }
 
+    if (invitation.status !== 'pending') {
+      throw new BadRequestException({
+        message: `This invitation has already been ${invitation.status}`,
+      });
+    }
+
     switch (invitation.to) {
       case 'project':
         await this.projectService.addUserToProject(
