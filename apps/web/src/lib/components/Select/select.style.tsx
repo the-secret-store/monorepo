@@ -21,6 +21,11 @@ export const SelectStyleWrapper = styled.div`
     padding: 1.1rem 1.4rem;
     transition: all 0.2s;
     margin-bottom: 2rem;
+    text-transform: capitalize;
+
+    option {
+      text-transform: capitalize;
+    }
 
     &:focus {
       border: 2px solid ${({ theme }) => theme.colors.purple};
