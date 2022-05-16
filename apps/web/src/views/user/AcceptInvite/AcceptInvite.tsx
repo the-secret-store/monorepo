@@ -16,6 +16,7 @@ export function AcceptInvite() {
   const request = useRequest();
   const [promiseState, setPromiseState] = useState<'loading' | 'success' | 'failed'>('loading');
   const [projectId, setProjectId] = useState<string | ObjectIdType>();
+  const [errorMessage, setErrorMessage] = useState<string>();
 
   const acceptInvite = useCallback(async () => {
     try {
@@ -32,7 +33,11 @@ export function AcceptInvite() {
   }, [request, invitationId]);
 
   useEffect(() => {
-    acceptInvite().catch(({ response }: AxiosError) => console.error(response?.data));
+    acceptInvite().catch(({ response }: AxiosError) => {
+      if (typeof response?.data.message === 'string') setErrorMessage(response?.data.message);
+      else setErrorMessage('There was an error accepting the invitation');
+      console.error(response?.data);
+    });
   }, [acceptInvite]);
 
   return (
@@ -53,7 +58,7 @@ export function AcceptInvite() {
       {promiseState === 'failed' && (
         <>
           <Cross size={100} color={theme.colors.red} />
-          <p>There was an error accepting the invitation.</p>
+          <p>{errorMessage}</p>
           <Button link='/'>
             <HomeIcon size={20} /> Home
           </Button>
