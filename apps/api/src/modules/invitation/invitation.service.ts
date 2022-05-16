@@ -55,9 +55,9 @@ export class InvitationService {
       subject: 'Invitation to join a team',
       html: `
       <p>You have been invited to join the team '${team.name}' as a ${invitation.privilege}.
-        Click <a href='${
-          this.configService.get<MiscConfig>('misc').clientUrl
-        }/invitation/accept?id=${invitation.id}'>here to accept the invitation</a>.
+        Click <a href='${this.configService.get<MiscConfig>('misc').clientUrl}/invitation/accept/${
+        invitation.id
+      }'>here to accept the invitation</a>.
       </p>`,
     });
     this.logger.debug(`Invitation id: ${invitation.id}`, InvitationService.name);
@@ -90,9 +90,9 @@ export class InvitationService {
       subject: 'Invitation to join a project',
       html: `
       <p>You have been invited to join the project '${project.name}' as a ${invitation.accessLevel}.
-        Click <a href='${
-          this.configService.get<MiscConfig>('misc').clientUrl
-        }/invitation/accept?id=${invitation.id}'>here to accept the invitation</a>.
+        Click <a href='${this.configService.get<MiscConfig>('misc').clientUrl}/invitation/accept/${
+        invitation.id
+      }'>here to accept the invitation</a>.
       </p>`,
     });
     this.logger.debug(`Invitation id: ${invitation.id}`, InvitationService.name);
