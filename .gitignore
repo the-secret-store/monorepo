@@ -40,7 +40,7 @@ Thumbs.db
 
 # ENV Files
 .env
-.env.local
+.env.*
 
 # Logs
 logs/
