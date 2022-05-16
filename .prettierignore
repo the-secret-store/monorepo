@@ -2,3 +2,8 @@
 
 /dist
 /coverage
+/logs
+/node_modules
+/docs
+
+package-lock.json
