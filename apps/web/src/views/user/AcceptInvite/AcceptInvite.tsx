@@ -19,8 +19,9 @@ export function AcceptInvite() {
 
   const acceptInvite = useCallback(async () => {
     try {
-      const { result } = (await request(Requests.users.ACCEPT_INVITATION(invitationId as string)))
-        .data;
+      const { result } = (
+        await request.patch(Requests.users.ACCEPT_INVITATION(invitationId as string))
+      ).data;
       setPromiseState('success');
       setProjectId(result.projectId);
       return result;
