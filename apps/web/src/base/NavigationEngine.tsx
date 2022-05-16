@@ -17,7 +17,7 @@ import { AuthRoute, ProtectedRoute } from './routes';
 export function NavigationEngine() {
   return (
     <Routes>
-      <Route element={<AuthRoute redirect='/projects' />}>
+      <Route element={<AuthRoute />}>
         <Route path='/auth/login' element={<Login />} />
       </Route>
 

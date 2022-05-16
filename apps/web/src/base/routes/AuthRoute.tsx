@@ -1,8 +1,14 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuthApi } from '../auth';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { useAuthApi } from '$web/hooks';
+import { PersistentStorageManager } from '$web/util';
 
-export function AuthRoute({ redirect }: { redirect: string }) {
+export function AuthRoute() {
   const { isAuthenticated } = useAuthApi();
 
-  return !isAuthenticated ? <Outlet /> : <Navigate to={redirect} />;
+  let redirect = new URLSearchParams(useLocation().search).get('redirect');
+
+  if (redirect) PersistentStorageManager.setProperty('redirect', redirect);
+  else redirect = PersistentStorageManager.getProperty('redirect') as string;
+
+  return !isAuthenticated ? <Outlet /> : <Navigate to={redirect ?? '/projects'} />;
 }
