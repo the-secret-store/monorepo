@@ -23,5 +23,6 @@ export function Select({ options, label, ...rest }: ISelectProps) {
 
 interface ISelectProps extends Omit<React.HTMLAttributes<HTMLSelectElement>, 'children'> {
   label: string;
+  name: string;
   options: Array<{ label: string; value: string }> | Array<string>;
 }
