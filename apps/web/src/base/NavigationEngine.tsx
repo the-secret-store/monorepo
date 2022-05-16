@@ -24,7 +24,6 @@ export function NavigationEngine() {
       <Route index element={<LandingPage />} />
 
       <Route element={<ProtectedRoute />}>
-        <Route path='/test' element={<TestPage />} />
         <Route path='/projects' element={<Outlet />}>
           <Route index element={<Projects />} />
           <Route path='create' element={<CreateProject />} />
@@ -41,6 +40,7 @@ export function NavigationEngine() {
         </Route>
       </Route>
 
+      <Route path='/test' element={<TestPage />} />
       <Route path='*' element={<Error404 />} />
     </Routes>
   );
