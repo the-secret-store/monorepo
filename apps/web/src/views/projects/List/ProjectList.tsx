@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { New as NewIcon } from '@styled-icons/fluentui-system-filled/New';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
-import { Button, Loader, ProjectList } from '$web/components';
+import { Button, EmptyList, Loader, ProjectList } from '$web/components';
 import { Requests } from '$web/constants';
 import { useRequest } from '$web/hooks';
 import { ProjectListPageWrapper } from './project-list.page.style';
@@ -35,6 +35,7 @@ export function Projects() {
         </header>
         {isLoading && <Loader />}
         {projects && <ProjectList projects={projects} />}
+        {!isLoading && (!projects || projects?.length === 0) && <EmptyList />}
       </div>
     </ProjectListPageWrapper>
   );
