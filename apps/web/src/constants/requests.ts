@@ -12,5 +12,6 @@ export const Requests = {
   },
   users: {
     GENERATE_TOKEN: 'user/generate-token',
+    ACCEPT_INVITATION: (invitationId: string | ObjectIdType) => `invitation/${invitationId}/accept`,
   },
 };

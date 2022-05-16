@@ -9,7 +9,7 @@ import {
   ShowSecretsAsJson,
 } from '$web/views/projects';
 import { TestPage } from '$web/views/Test';
-import { UserSettings } from '$web/views/user';
+import { AcceptInvite, UserSettings } from '$web/views/user';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import { Error404 } from './error/404';
 import { AuthRoute, ProtectedRoute } from './routes';
@@ -37,6 +37,10 @@ export function NavigationEngine() {
 
         <Route path='/user' element={<Outlet />}>
           <Route path='settings' element={<UserSettings />} />
+        </Route>
+
+        <Route path='/invitation' element={<Outlet />}>
+          <Route path='accept/:invitationId' element={<AcceptInvite />} />
         </Route>
       </Route>
 

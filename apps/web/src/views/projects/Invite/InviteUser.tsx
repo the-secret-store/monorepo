@@ -30,11 +30,11 @@ export function InviteUserPage() {
 
     try {
       await request.post(Requests.invitations.INVITE_TO_PROJECT, {
-        email: invitationDetails,
+        ...invitationDetails,
         projectId: project.id,
       });
       toast.update(toastId, {
-        render: `Invitation sent to ${invitationDetails}`,
+        render: `Invitation sent to ${invitationDetails.email}`,
         isLoading: false,
         type: 'success',
         autoClose: 3000,
