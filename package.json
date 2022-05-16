@@ -43,12 +43,13 @@
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.0.0",
+    "spinners-react": "^1.0.7",
     "styled-components": "5.3.3",
     "styled-icons": "^10.45.0",
     "swagger-ui-express": "^4.3.0",
     "timeago-react": "^3.0.4",
     "tslib": "^2.0.0",
-    "typeorm": "^0.2.41"
+    "typeorm": "^0.2.45"
   },
   "devDependencies": {
     "@nestjs/schematics": "^8.0.0",

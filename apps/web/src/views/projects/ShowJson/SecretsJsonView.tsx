@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
-import { Button } from '$web/components';
+import { Button, JsonViewer } from '$web/components';
 import { ShowJsonStyleWrapper } from './show-json.style';
 
 export function ShowSecretsAsJson() {
@@ -15,7 +15,7 @@ export function ShowSecretsAsJson() {
     <ShowJsonStyleWrapper>
       <h1 className='page-title'>{name}</h1>
       <h5>Secrets as JSON</h5>
-      <code>{JSON.stringify(secrets, null, '\t')}</code>
+      <JsonViewer json={secrets} />
       <Button onClick={goBack}>{'<- '}Back</Button>
     </ShowJsonStyleWrapper>
   );
