@@ -15,7 +15,7 @@ export function ShowSecretsAsJson() {
     <ShowJsonStyleWrapper>
       <h1 className='page-title'>{name}</h1>
       <h5>Secrets as JSON</h5>
-      <code>{JSON.stringify(secrets, null, '\t')}</code>
+      <pre>{JSON.stringify(secrets, null, '  ')}</pre>
       <Button onClick={goBack}>{'<- '}Back</Button>
     </ShowJsonStyleWrapper>
   );
