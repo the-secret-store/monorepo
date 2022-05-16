@@ -1,5 +1,6 @@
 export * from './Button';
 export * from './Chip';
+export * from './ErrorStackViewer';
 export * from './JsonViewer';
 export * from './NavBar';
 export * from './ProjectList';
