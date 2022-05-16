@@ -2,6 +2,7 @@ export * from './Button';
 export * from './Chip';
 export * from './ErrorStackViewer';
 export * from './JsonViewer';
+export * from './Loader';
 export * from './NavBar';
 export * from './ProjectList';
 export * from './Select';
