@@ -11,7 +11,7 @@ export function Error404() {
 
       <h5>The resource you're looking for does not exist</h5>
 
-      <Button variant="error" link="/">
+      <Button variant='error' link='/'>
         Take me home
       </Button>
     </Error404StyleWrapper>

@@ -21,7 +21,7 @@ ReactDOM.render(
             <NavigationEngine />
           </BrowserRouter>
         </AuthEngine>
-        <ToastContainer position="bottom-center" theme="dark" />
+        <ToastContainer position='bottom-center' theme='dark' />
       </ErrorBoundary>
     </ThemeProvider>
   </StrictMode>,

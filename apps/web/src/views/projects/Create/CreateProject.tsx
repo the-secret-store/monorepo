@@ -54,8 +54,8 @@ export function CreateProject() {
 
   return (
     <CreateProjectStyleWrapper>
-      <div className="container">
-        <h1 className="page-title">Create Project</h1>
+      <div className='container'>
+        <h1 className='page-title'>Create Project</h1>
 
         <p>
           <InfoCircle size={16} /> None of the fields are mandatory. If you leave the Project Name
@@ -63,10 +63,10 @@ export function CreateProject() {
         </p>
 
         <form onSubmit={handleSubmit}>
-          <TextInput label="Project Name" name="name" onChange={handleChange} />
-          <TextInput label="Git URL" name="gitUrl" onChange={handleChange} />
+          <TextInput label='Project Name' name='name' onChange={handleChange} />
+          <TextInput label='Git URL' name='gitUrl' onChange={handleChange} />
 
-          <Button type="submit">Create</Button>
+          <Button type='submit'>Create</Button>
         </form>
       </div>
     </CreateProjectStyleWrapper>

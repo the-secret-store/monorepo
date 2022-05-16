@@ -34,13 +34,13 @@ export function UserSettings() {
 
   return (
     <SettingsStyleWrapper>
-      <div className="container">
-        <h1 className="page-title">
+      <div className='container'>
+        <h1 className='page-title'>
           <Settings size={30} />
           User Settings
         </h1>
 
-        <div className="setting">
+        <div className='setting'>
           <h2>
             <Key size={25} />
             Access Token

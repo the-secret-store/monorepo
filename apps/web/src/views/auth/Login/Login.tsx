@@ -22,7 +22,7 @@ export function Login() {
 
   return (
     <LoginStyleWrapper>
-      <img src={LogoPng} alt="logo" />
+      <img src={LogoPng} alt='logo' />
       <h2>The Secret Store</h2>
       {!token && (
         <Button href={`${getBaseUrl()}/${Requests.LOGIN}`}>

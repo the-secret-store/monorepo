@@ -3,7 +3,7 @@ import { TextInputStyleWrapper, InputElementStates } from './text-input.style';
 export function TextInput({ label, state, ...rest }: TextInputProps) {
   return (
     <TextInputStyleWrapper state={state ?? 'normal'}>
-      <input type="text" {...rest} />
+      <input type='text' {...rest} />
       {label && <label>{label}</label>}
     </TextInputStyleWrapper>
   );

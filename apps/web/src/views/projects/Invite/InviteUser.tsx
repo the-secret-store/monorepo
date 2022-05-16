@@ -44,11 +44,11 @@ export function InviteUserPage() {
 
   return (
     <InviteUsersStyleWrapper>
-      <h1 className="page-title">Invite user to {project.name}</h1>
+      <h1 className='page-title'>Invite user to {project.name}</h1>
 
       <form onSubmit={handleSubmit}>
-        <TextInput label="Email" name="email" onChange={handleChange} />
-        <Button type="submit">Invite</Button>
+        <TextInput label='Email' name='email' onChange={handleChange} />
+        <Button type='submit'>Invite</Button>
       </form>
     </InviteUsersStyleWrapper>
   );

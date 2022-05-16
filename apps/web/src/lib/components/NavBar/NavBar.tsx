@@ -22,20 +22,20 @@ export function NavBar() {
 
   return (
     <NavBarStyleWrapper>
-      <div className="brand">
-        <img src={LogoPng} alt="logo" />
+      <div className='brand'>
+        <img src={LogoPng} alt='logo' />
         <h2>The Secret Store</h2>
       </div>
-      <ul className="links">
+      <ul className='links'>
         <li>
           <Link to={'/projects'}>Projects</Link>
         </li>
       </ul>
-      <div className="user">
+      <div className='user'>
         <span>{session.getDisplayName()}</span>
-        {avatar ? <img src={avatar} alt="user" /> : <AccountCircle size={24} />}
-        <LogoutCircleR className="text-btn" size={20} onClick={logout} />
-        <Settings className="text-btn" size={20} onClick={openSettings} />
+        {avatar ? <img src={avatar} alt='user' /> : <AccountCircle size={24} />}
+        <LogoutCircleR className='text-btn' size={20} onClick={logout} />
+        <Settings className='text-btn' size={20} onClick={openSettings} />
       </div>
     </NavBarStyleWrapper>
   );

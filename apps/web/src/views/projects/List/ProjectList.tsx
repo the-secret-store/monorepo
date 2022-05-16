@@ -21,10 +21,10 @@ export function Projects() {
 
   return (
     <ProjectListPageWrapper>
-      <div className="container">
+      <div className='container'>
         <header>
-          <h1 className="page-title">Projects</h1>
-          <Button link="/projects/create">
+          <h1 className='page-title'>Projects</h1>
+          <Button link='/projects/create'>
             <NewIcon size={20} />
             New Project
           </Button>

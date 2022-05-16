@@ -21,9 +21,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "auth"
-        ]
+        "tags": ["auth"]
       }
     },
     "/auth/profile": {
@@ -35,9 +33,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "security": [
           {
             "bearer": []
@@ -54,9 +50,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "security": [
           {
             "bearer": []
@@ -73,9 +67,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "security": [
           {
             "bearer": []
@@ -92,9 +84,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "auth"
-        ]
+        "tags": ["auth"]
       }
     },
     "/auth/google/success": {
@@ -106,9 +96,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "auth"
-        ]
+        "tags": ["auth"]
       }
     },
     "/project": {
@@ -130,9 +118,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "project"
-        ],
+        "tags": ["project"],
         "security": [
           {
             "bearer": []
@@ -149,9 +135,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "project"
-        ],
+        "tags": ["project"],
         "security": [
           {
             "bearer": []
@@ -168,9 +152,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "project"
-        ],
+        "tags": ["project"],
         "security": [
           {
             "bearer": []
@@ -196,9 +178,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "project"
-        ],
+        "tags": ["project"],
         "security": [
           {
             "bearer": []
@@ -215,9 +195,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "project"
-        ],
+        "tags": ["project"],
         "security": [
           {
             "bearer": []
@@ -234,9 +212,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "project"
-        ],
+        "tags": ["project"],
         "security": [
           {
             "bearer": []
@@ -251,9 +227,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "project"
-        ],
+        "tags": ["project"],
         "security": [
           {
             "bearer": []
@@ -280,9 +254,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "team"
-        ],
+        "tags": ["team"],
         "security": [
           {
             "bearer": []
@@ -309,9 +281,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "invitation"
-        ],
+        "tags": ["invitation"],
         "security": [
           {
             "bearer": []
@@ -338,9 +308,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "invitation"
-        ],
+        "tags": ["invitation"],
         "security": [
           {
             "bearer": []
@@ -366,9 +334,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "invitation"
-        ],
+        "tags": ["invitation"],
         "security": [
           {
             "bearer": []
