@@ -24,7 +24,7 @@ export function AcceptInvite() {
         await request.patch(Requests.users.ACCEPT_INVITATION(invitationId as string))
       ).data;
       setPromiseState('success');
-      setProjectId(result.projectId);
+      setProjectId(result.teamOrProjectId);
       return result;
     } catch (error) {
       setPromiseState('failed');
