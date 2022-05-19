@@ -58,8 +58,8 @@ export class ProjectController {
   ) {
     if (!isMongoId(projectId)) throw new BadRequestException({ message: 'Not a valid project id' });
     const result = await this.projectService.checkAccessAndFindProject(
-      user.id,
-      projectId,
+      ObjectId(user.id),
+      ObjectId(projectId),
       ProjectAccessLevel.MEMBER
     );
     return { message: 'Project information retrieved successfully', result };
