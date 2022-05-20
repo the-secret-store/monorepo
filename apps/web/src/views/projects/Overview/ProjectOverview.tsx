@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
+import { Eye, EyeSlash } from '@styled-icons/bootstrap';
 import { LockShield } from '@styled-icons/fluentui-system-regular';
 import { Braces, Save, Settings } from '@styled-icons/remix-line';
-import { Eye, EyeSlash } from '@styled-icons/bootstrap';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Button, Chip, Loader, TableRow, TableView, TextInput } from '$web/components';
-import { ProjectOverviewStyleWrapper } from './project-overview.style';
-import { useRequest } from '$web/hooks';
 import { Requests } from '$web/constants';
+import { useRequest } from '$web/hooks';
+import { ProjectOverviewStyleWrapper } from './project-overview.style';
+import { Error404 } from '$web/base/error/404';
 
 export function ProjectOverview() {
   const { projectId } = useParams();
@@ -22,17 +23,17 @@ export function ProjectOverview() {
     if (project) return;
     if (!projectId) navigate('/projects');
 
-    console.log('Project state not found, sending api request...');
+    console.debug('Project state not found, sending api request...');
     setIsLoading(true);
     const info = await (
       await request.get(Requests.projects.GET_PROJECT_INFO(projectId!))
     ).data.result;
     setProject(info);
-    setIsLoading(false);
   }, [navigate, project, projectId, request]);
 
   useEffect(() => {
-    getProjectInfo();
+    getProjectInfo().catch(console.error);
+    setIsLoading(false);
   }, [getProjectInfo]);
 
   const toggleValueVisibility = () => setShowValues(o => !o);
@@ -106,6 +107,8 @@ export function ProjectOverview() {
             </div>
           </>
         )}
+
+        {!project && !isLoading && <Error404 container='shell' />}
       </div>
     </ProjectOverviewStyleWrapper>
   );
