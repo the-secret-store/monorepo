@@ -2,9 +2,9 @@ import { Globe } from '@styled-icons/boxicons-regular/Globe';
 import { Button } from '$web/components';
 import { Error404StyleWrapper } from './404.style';
 
-export function Error404() {
+export function Error404({ container }: { container: 'shell' | 'none' } = { container: 'none' }) {
   return (
-    <Error404StyleWrapper>
+    <Error404StyleWrapper container={container}>
       <div>
         4<Globe size={80} />4
       </div>
