@@ -13,6 +13,7 @@ export const NavBarStyleWrapper = styled.nav`
     display: flex;
     align-items: center;
     gap: 1rem;
+    cursor: pointer;
 
     img {
       width: 3.6rem;
