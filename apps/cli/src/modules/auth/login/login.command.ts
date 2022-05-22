@@ -1,4 +1,4 @@
-import { BrowserService, CliLoggerService } from '../../../lib/util';
+import { BrowserService, CliLoggerService, GlobalConfigService } from '../../../lib/util';
 import { Command, CommandRunner, InquirerService, Option } from 'nest-commander';
 
 @Command({
@@ -7,7 +7,11 @@ import { Command, CommandRunner, InquirerService, Option } from 'nest-commander'
 })
 export class Login implements CommandRunner {
   private readonly loggerService = new CliLoggerService('Login');
-  constructor(private browserService: BrowserService, private readonly inquirer: InquirerService) {}
+  constructor(
+    private browserService: BrowserService,
+    private readonly inquirer: InquirerService,
+    private readonly globalConfigService: GlobalConfigService
+  ) {}
 
   async run(_inputs: string[], options: Record<string, string>): Promise<void> {
     let { token } = options;
@@ -19,6 +23,7 @@ export class Login implements CommandRunner {
     }
 
     this.loggerService.debug(token, 'Received');
+    await this.globalConfigService.setAccessToken(token);
   }
 
   @Option({
