@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { TaskRunner } from '../task/task.command';
+import { AuthModule } from '../modules/auth/auth.module';
 
 @Module({
-  imports: [],
-  providers: [TaskRunner],
+  imports: [AuthModule],
+  providers: [],
 })
 export class AppModule {}
