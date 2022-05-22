@@ -3,7 +3,8 @@ import { Command, CommandRunner, InquirerService, Option } from 'nest-commander'
 
 @Command({
   name: 'login',
-  options: { isDefault: true },
+  options: { isDefault: false },
+  description: 'login to your account',
 })
 export class Login implements CommandRunner {
   private readonly loggerService = new CliLoggerService('Login');
