@@ -1,6 +1,7 @@
 import { BadRequestException, Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateProjectInputDto } from '@the-secret-store/api-interfaces/dtos/project';
+import { ProjectAccessLevel } from '@the-secret-store/api-interfaces/enums';
 import { isMongoId } from 'class-validator';
 import { ObjectId } from 'mongodb';
 import { ObjectID as ObjectIdType } from 'typeorm';
@@ -56,7 +57,11 @@ export class ProjectController {
     @Param('projectId') projectId: ObjectIdType
   ) {
     if (!isMongoId(projectId)) throw new BadRequestException({ message: 'Not a valid project id' });
-    const result = await this.projectService.findById(projectId);
+    const result = await this.projectService.checkAccessAndFindProject(
+      ObjectId(user.id),
+      ObjectId(projectId),
+      ProjectAccessLevel.MEMBER
+    );
     return { message: 'Project information retrieved successfully', result };
   }
 

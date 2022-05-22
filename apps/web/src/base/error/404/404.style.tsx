@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Error404StyleWrapper = styled.div`
+export const Error404StyleWrapper = styled.div<{ container: 'shell' | 'none' }>`
   display: grid;
-  height: 100vh;
+  min-height: ${({ container }) => (container === 'none' ? '100vh' : '80vh')};
   place-content: center;
   place-items: center;
   gap: 2rem;

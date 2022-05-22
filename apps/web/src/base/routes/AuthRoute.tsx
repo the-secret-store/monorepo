@@ -8,7 +8,10 @@ export function AuthRoute() {
   let redirect = new URLSearchParams(useLocation().search).get('redirect');
 
   if (redirect) PersistentStorageManager.setProperty('redirect', redirect);
-  else redirect = PersistentStorageManager.getProperty('redirect') as string;
+  else {
+    redirect = PersistentStorageManager.getProperty('redirect') as string;
+    PersistentStorageManager.removeProperty('redirect');
+  }
 
   return !isAuthenticated ? <Outlet /> : <Navigate to={redirect ?? '/projects'} />;
 }

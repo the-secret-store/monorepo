@@ -22,7 +22,7 @@ export function NavBar() {
 
   return (
     <NavBarStyleWrapper>
-      <div className='brand'>
+      <div className='brand' role={'link'} onClick={() => navigate('/projects')}>
         <img src={LogoPng} alt='logo' />
         <h2>The Secret Store</h2>
       </div>
