@@ -6,7 +6,7 @@ export class CliLoggerService {
   constructor(private globalContext?: string) {}
 
   private addContextIfPresent(message: string, context?: string) {
-    return `${context ?? this.globalContext ?? ''} ${message}`.trimStart();
+    return `${context ?? this.globalContext ?? 'The Secret Store CLI'}: ${message}`;
   }
 
   debug(message: string, context?: string) {
