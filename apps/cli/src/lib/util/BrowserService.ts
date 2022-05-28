@@ -1,6 +1,6 @@
 import * as openInBrowser from 'open';
 import { Injectable } from '@nestjs/common';
-import { CliLoggerService } from '../../tools';
+import { CliLoggerService } from './CliLoggerService';
 
 @Injectable()
 export class BrowserService {
@@ -9,7 +9,7 @@ export class BrowserService {
 
   open(route: string) {
     if (!route.startsWith('/')) route = `/${route}`;
-    this.loggerService.debug(`Attempting to open ${this.baseUrl}${route} on browser`);
+    this.loggerService.debug(`Attempting to ${this.baseUrl}${route} on browser`);
     openInBrowser(`${this.baseUrl}${route}`);
   }
 }

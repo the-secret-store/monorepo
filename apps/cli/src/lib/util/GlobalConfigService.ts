@@ -2,23 +2,15 @@ import * as path from 'path';
 import * as os from 'os';
 import * as fsp from 'fs/promises';
 import * as fs from 'fs';
-import { CliLoggerService } from '../../tools';
-import { ConfigurationError } from '../errors';
+import { CliLoggerService } from './CliLoggerService';
 
 export class GlobalConfigService {
   private readonly CONFIG_FILE_PATH = path.join(os.homedir(), '.tssrc');
-  private config: Configurations = {
-    noOfLocalBackups: 1,
-    preferredEditor: 'code',
-  };
+  private config: Record<string, string> = {};
 
   private async loadConfig() {
-    try {
-      const fileContent = await fsp.readFile(this.CONFIG_FILE_PATH, 'utf8');
-      this.config = JSON.parse(fileContent);
-    } catch (err) {
-      throw new ConfigurationError(err);
-    }
+    const fileContent = await fsp.readFile(this.CONFIG_FILE_PATH, 'utf8');
+    this.config = JSON.parse(fileContent);
   }
 
   constructor(private readonly logger: CliLoggerService = new CliLoggerService()) {
@@ -29,27 +21,21 @@ export class GlobalConfigService {
     this.loadConfig();
   }
 
-  getConfig(key: keyof Configurations) {
+  get(key: string) {
     return this.config[key];
   }
 
-  setConfig(key: keyof Configurations, value: string) {
-    this.config[key as string] = value;
+  set(key: string, value: string) {
+    this.config[key] = value;
     this.logger.debug(`Attempting to write to ${this.CONFIG_FILE_PATH}`);
     return fsp.writeFile(this.CONFIG_FILE_PATH, JSON.stringify(this.config));
   }
 
   getAccessToken() {
-    return this.getConfig('token');
+    return this.get('token');
   }
 
   setAccessToken(token: string) {
-    return this.setConfig('token', token);
+    return this.set('token', token);
   }
-}
-
-export interface Configurations {
-  token?: string;
-  noOfLocalBackups: number;
-  preferredEditor: string;
 }
