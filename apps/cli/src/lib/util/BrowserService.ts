@@ -1,6 +1,6 @@
 import * as openInBrowser from 'open';
 import { Injectable } from '@nestjs/common';
-import { CliLoggerService } from './CliLoggerService';
+import { CliLoggerService } from '../../tools';
 
 @Injectable()
 export class BrowserService {

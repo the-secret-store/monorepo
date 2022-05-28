@@ -1,5 +1,6 @@
-import { BrowserService, CliLoggerService, GlobalConfigService } from '../../../lib/util';
+import { BrowserService, GlobalConfigService } from '../../../lib/util';
 import { Command, CommandRunner, InquirerService, Option } from 'nest-commander';
+import { CliLoggerService } from '../../../tools';
 
 @Command({
   name: 'login',

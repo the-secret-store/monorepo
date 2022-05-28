@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as os from 'os';
 import * as fsp from 'fs/promises';
 import * as fs from 'fs';
-import { CliLoggerService } from './CliLoggerService';
+import { CliLoggerService } from '../../tools';
 import { ConfigurationError } from '../errors';
 
 export class GlobalConfigService {
