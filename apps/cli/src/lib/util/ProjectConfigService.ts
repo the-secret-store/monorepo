@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { Injectable } from '@nestjs/common';
 
-import { Helpers } from './Helpers';
+import { JsonHelper } from './JsonHelper';
 
 @Injectable()
 export class ProjectConfigService {
@@ -9,7 +9,7 @@ export class ProjectConfigService {
   private readonly packageJson: Record<string, unknown>;
 
   constructor() {
-    this.packageJson = Helpers.importFile(this.packageJsonFile) as Record<string, unknown>;
+    this.packageJson = JsonHelper.importJson(this.packageJsonFile) as Record<string, unknown>;
   }
 
   getConfig(key: string) {
@@ -18,6 +18,6 @@ export class ProjectConfigService {
 
   setConfig(key: string, value: unknown) {
     this.packageJson[key] = value;
-    Helpers.writeJson(this.packageJsonFile, this.packageJson);
+    JsonHelper.writeJson(this.packageJsonFile, this.packageJson);
   }
 }

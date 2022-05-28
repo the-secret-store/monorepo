@@ -1,5 +1,5 @@
 export * from './ApiService';
 export * from './BrowserService';
 export * from './GlobalConfigService';
-export * from './Helpers';
+export * from './JsonHelper';
 export * from './ProjectConfigService';
