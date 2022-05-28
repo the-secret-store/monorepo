@@ -24,6 +24,13 @@ export class AuthController {
     return { message: 'Profile found', profile: user };
   }
 
+  @ApiBearerAuth()
+  @Protect()
+  @Get('validate-token')
+  validateToken(@CurrentUser() user: User) {
+    return { message: 'Token is valid', result: user };
+  }
+
   @Get('generate-token')
   @ApiBearerAuth()
   @Protect()
