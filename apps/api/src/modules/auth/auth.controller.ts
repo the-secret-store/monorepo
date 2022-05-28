@@ -1,5 +1,6 @@
 import { Controller, Get, Redirect } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Deprecated } from '@the-secret-store/util';
 import { docTags } from '../../constants/api-tags';
 import { User } from '../user/user.entity';
 import { AuthService } from './auth.service';
@@ -20,8 +21,16 @@ export class AuthController {
   @ApiBearerAuth()
   @Protect()
   @Get('profile')
+  @Deprecated('This was only added for testing purpose', 'Use getUserDetails from user module')
   getProfile(@CurrentUser() user: User) {
     return { message: 'Profile found', profile: user };
+  }
+
+  @ApiBearerAuth()
+  @Protect()
+  @Get('validate-token')
+  validateToken(@CurrentUser() user: User) {
+    return { message: 'Token is valid', result: user };
   }
 
   @Get('generate-token')
