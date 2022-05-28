@@ -3,14 +3,19 @@ import * as os from 'os';
 import * as fsp from 'fs/promises';
 import * as fs from 'fs';
 import { CliLoggerService } from './CliLoggerService';
+import { ConfigurationError } from '../errors';
 
 export class GlobalConfigService {
   private readonly CONFIG_FILE_PATH = path.join(os.homedir(), '.tssrc');
   private config: Record<string, string> = {};
 
   private async loadConfig() {
-    const fileContent = await fsp.readFile(this.CONFIG_FILE_PATH, 'utf8');
-    this.config = JSON.parse(fileContent);
+    try {
+      const fileContent = await fsp.readFile(this.CONFIG_FILE_PATH, 'utf8');
+      this.config = JSON.parse(fileContent);
+    } catch (err) {
+      throw new ConfigurationError(err);
+    }
   }
 
   constructor(private readonly logger: CliLoggerService = new CliLoggerService()) {

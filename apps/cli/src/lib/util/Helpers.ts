@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import { FileNotFoundError } from '../errors';
 
 export class Helpers {
   /**
@@ -17,7 +18,7 @@ export class Helpers {
   static importFile(filePath: string) {
     let file: unknown;
     if (!fs.existsSync(filePath)) {
-      throw new Error(`${filePath} not found`);
+      throw new FileNotFoundError(filePath);
     }
 
     import(filePath).then(fileContent => (file = fileContent));
