@@ -7,7 +7,10 @@ import { ConfigurationError } from '../errors';
 
 export class GlobalConfigService {
   private readonly CONFIG_FILE_PATH = path.join(os.homedir(), '.tssrc');
-  private config: Record<string, string> = {};
+  private config: Configurations = {
+    noOfLocalBackups: 1,
+    preferredEditor: 'code',
+  };
 
   private async loadConfig() {
     try {
@@ -26,21 +29,27 @@ export class GlobalConfigService {
     this.loadConfig();
   }
 
-  get(key: string) {
+  getConfig(key: keyof Configurations) {
     return this.config[key];
   }
 
-  set(key: string, value: string) {
-    this.config[key] = value;
+  setConfig(key: keyof Configurations, value: string) {
+    this.config[key as string] = value;
     this.logger.debug(`Attempting to write to ${this.CONFIG_FILE_PATH}`);
     return fsp.writeFile(this.CONFIG_FILE_PATH, JSON.stringify(this.config));
   }
 
   getAccessToken() {
-    return this.get('token');
+    return this.getConfig('token');
   }
 
   setAccessToken(token: string) {
-    return this.set('token', token);
+    return this.setConfig('token', token);
   }
+}
+
+export interface Configurations {
+  token?: string;
+  noOfLocalBackups: number;
+  preferredEditor: string;
 }
