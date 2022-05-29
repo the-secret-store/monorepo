@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Settings } from '@styled-icons/remix-line';
 import { UserPlus } from '@styled-icons/boxicons-regular';
+import { Requests } from '@the-secret-store/api-interfaces/constants';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Button, TextInput } from '$web/components';
-import { Requests } from '$web/constants';
 import { useRequest } from '$web/hooks';
 import { ProjectSettingsStyleWrapper } from './project-settings.style';
 

@@ -21,8 +21,6 @@
       "$web/base/*": ["apps/web/src/base/*"],
       "$web/components": ["apps/web/src/lib/components"],
       "$web/components/*": ["apps/web/src/lib/components/*"],
-      "$web/constants": ["apps/web/src/constants"],
-      "$web/constants/*": ["apps/web/src/constants/*"],
       "$web/hooks": ["apps/web/src/lib/hooks"],
       "$web/hooks/*": ["apps/web/src/lib/hooks/*"],
       "$web/util": ["apps/web/src/lib/util"],

@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { AxiosError } from 'axios';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Requests } from '@the-secret-store/api-interfaces/constants';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Button, Select, TextInput } from '$web/components';
-import { Requests } from '$web/constants';
 import { useRequest } from '$web/hooks';
 import { InviteUsersStyleWrapper } from './invite-users.style';
 

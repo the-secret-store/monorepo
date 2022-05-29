@@ -1,11 +1,11 @@
+import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { InfoCircle } from '@styled-icons/bootstrap/InfoCircle';
+import { Requests } from '@the-secret-store/api-interfaces/constants';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Button, TextInput } from '$web/components';
-import { Requests } from '$web/constants';
 import { useRequest } from '$web/hooks';
 import { CreateProjectStyleWrapper } from './create-project.style';
 
