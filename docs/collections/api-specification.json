@@ -56,11 +56,6 @@
         },
         "tags": [
           "auth"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
         ]
       }
     },

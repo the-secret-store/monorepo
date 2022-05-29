@@ -33,4 +33,8 @@ export class AuthTokenService {
       { expiresIn: this.jwtConfig.validity[userAgent] }
     );
   }
+
+  validateToken(token: string) {
+    return this.jwtService.verifyAsync(token);
+  }
 }
