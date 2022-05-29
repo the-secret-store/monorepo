@@ -5,7 +5,7 @@ import {
   BrowserService,
   CliLoggerService,
   GlobalConfigService,
-} from '../../../lib/util';
+} from '../../../lib/services';
 
 @Command({
   name: 'login',
