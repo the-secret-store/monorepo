@@ -1,4 +1,4 @@
-import { Controller, Get, Redirect } from '@nestjs/common';
+import { Body, Controller, Get, Redirect } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Deprecated } from '@the-secret-store/util';
 import { docTags } from '../../constants/api-tags';
@@ -26,11 +26,10 @@ export class AuthController {
     return { message: 'Profile found', profile: user };
   }
 
-  @ApiBearerAuth()
-  @Protect()
   @Get('validate-token')
-  validateToken(@CurrentUser() user: User) {
-    return { message: 'Token is valid', result: user };
+  async validateToken(@Body('token') token: string) {
+    await this.authService.validateToken(token);
+    return { message: 'Token is valid' };
   }
 
   @Get('generate-token')
