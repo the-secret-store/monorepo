@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { Inject, Injectable } from '@nestjs/common';
+import { GlobalConfigService } from './GlobalConfigService';
 
 @Injectable()
 export class ApiService {
@@ -7,9 +8,13 @@ export class ApiService {
     baseURL: 'http://localhost:3000',
   });
 
-  constructor(token: string) {
+  constructor(
+    @Inject(GlobalConfigService) private readonly globalConfigService: GlobalConfigService
+  ) {
+    const token = this.globalConfigService.getAccessToken();
     this.axiosInstance.interceptors.request.use(config => {
       config.headers.Authorization = `Bearer ${token}`;
+      return config;
     });
   }
 

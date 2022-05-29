@@ -1,5 +1,6 @@
-import { BrowserService, CliLoggerService, GlobalConfigService } from '../../../lib/util';
 import { Command, CommandRunner, InquirerService, Option } from 'nest-commander';
+import { Requests } from '@the-secret-store/api-interfaces/constants';
+import { ApiService, BrowserService, CliLoggerService, GlobalConfigService } from '$cli/services';
 
 @Command({
   name: 'login',
@@ -7,10 +8,11 @@ import { Command, CommandRunner, InquirerService, Option } from 'nest-commander'
   description: 'login to your account',
 })
 export class Login implements CommandRunner {
-  private readonly loggerService = new CliLoggerService('Login');
+  private readonly loggerService = new CliLoggerService('AuthService');
   constructor(
     private browserService: BrowserService,
     private readonly inquirer: InquirerService,
+    private readonly api: ApiService,
     private readonly globalConfigService: GlobalConfigService
   ) {}
 
@@ -24,7 +26,14 @@ export class Login implements CommandRunner {
     }
 
     this.loggerService.debug(token, 'Received');
-    await this.globalConfigService.setAccessToken(token);
+
+    try {
+      await this.api.get(Requests.auth.VALIDATE_TOKEN, { data: { token } });
+      await this.globalConfigService.setAccessToken(token);
+      this.loggerService.success('Login successful');
+    } catch (error) {
+      this.loggerService.error('Invalid token, please obtain a new token and paste it here');
+    }
   }
 
   @Option({

@@ -29,7 +29,10 @@
       "$web/views/*": ["apps/web/src/views/*"],
       "@the-secret-store/api-interfaces/*": ["libs/api-interfaces/src/*"],
       "@the-secret-store/util": ["libs/util/src"],
-      "@the-secret-store/util/*": ["libs/util/src/*"]
+      "@the-secret-store/util/*": ["libs/util/src/*"],
+      "$cli/services": ["apps/cli/src/lib/services"],
+      "$cli/util": ["apps/cli/src/lib/util"],
+      "$cli/errors": ["apps/cli/src/errors"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -10,12 +10,16 @@ export class CliLoggerService {
   }
 
   debug(message: string, context?: string) {
-    if (process.env.NODE_ENV === 'production') return;
+    if (!+process.env.CLI_DEV_FLAG) return;
     console.debug(pc.gray(this.addContextIfPresent(message, context)));
   }
 
   info(message: string, context?: string) {
     console.info(pc.cyan(this.addContextIfPresent(message, context)));
+  }
+
+  success(message: string, context?: string) {
+    console.info(pc.green(this.addContextIfPresent(message, context)));
   }
 
   warn(message: string, context?: string) {

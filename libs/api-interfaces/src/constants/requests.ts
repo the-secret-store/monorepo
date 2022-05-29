@@ -15,4 +15,7 @@ export const Requests = {
     GENERATE_TOKEN: 'user/generate-token',
     ACCEPT_INVITATION: (invitationId: string | ObjectIdType) => `invitation/${invitationId}/accept`,
   },
+  auth: {
+    VALIDATE_TOKEN: 'auth/validate-token',
+  },
 };

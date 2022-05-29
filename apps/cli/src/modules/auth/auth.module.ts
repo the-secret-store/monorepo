@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { BrowserService, GlobalConfigService } from '../../lib/util';
+import { ApiService, BrowserService, GlobalConfigService } from '$cli/services';
 import { Login } from './login/login.command';
 import { LoginQuestions } from './login/login.questions';
 
 @Module({
   imports: [],
-  providers: [Login, BrowserService, LoginQuestions, GlobalConfigService],
+  providers: [Login, BrowserService, LoginQuestions, GlobalConfigService, ApiService],
   exports: [Login],
 })
 export class AuthModule {}
