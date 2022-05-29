@@ -15,7 +15,7 @@ export class AuthController {
   @Get('login')
   @Redirect('/auth/google')
   login() {
-    // Currently since we don't have any a local strategy, I redirect to google oauth
+    // alias route fot Google Oauth2 login
   }
 
   @ApiBearerAuth()
