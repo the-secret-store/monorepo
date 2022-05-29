@@ -18,6 +18,10 @@ export class CliLoggerService {
     console.info(pc.cyan(this.addContextIfPresent(message, context)));
   }
 
+  success(message: string, context?: string) {
+    console.info(pc.green(this.addContextIfPresent(message, context)));
+  }
+
   warn(message: string, context?: string) {
     console.warn(pc.yellow(this.addContextIfPresent(message, context)));
   }
