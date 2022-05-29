@@ -5,9 +5,9 @@ import { ObjectID as ObjectIdType } from 'typeorm';
 import { Home5 as HomeIcon } from '@styled-icons/remix-line';
 import { Cross } from '@styled-icons/entypo';
 import { CheckmarkCircleOutline } from '@styled-icons/evaicons-outline';
+import { Requests } from '@the-secret-store/api-interfaces/constants';
 import { theme } from '$web/base/theme';
 import { Button, Loader } from '$web/components';
-import { Requests } from '$web/constants';
 import { useRequest } from '$web/hooks';
 import { AcceptInviteStyleWrapper } from './accept-invite.style';
 

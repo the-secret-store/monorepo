@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Google as GoogleIcon } from '@styled-icons/boxicons-logos/Google';
+import { Requests } from '@the-secret-store/api-interfaces/constants';
 import { LogoPng } from '$web/assets/images';
 import { Button } from '$web/components';
-import { Requests } from '$web/constants';
 import { useAuthApi } from '$web/hooks';
 import { getBaseUrl } from '$web/util';
 import { LoginStyleWrapper } from './login.style';

@@ -5,11 +5,11 @@ import { Eye, EyeSlash } from '@styled-icons/bootstrap';
 import { LockShield } from '@styled-icons/fluentui-system-regular';
 import { Braces, Save, Settings } from '@styled-icons/remix-line';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
+import { Requests } from '@the-secret-store/api-interfaces/constants';
+import { Error404 } from '$web/base/error/404';
 import { Button, Chip, Loader, TableRow, TableView, TextInput } from '$web/components';
-import { Requests } from '$web/constants';
 import { useRequest } from '$web/hooks';
 import { ProjectOverviewStyleWrapper } from './project-overview.style';
-import { Error404 } from '$web/base/error/404';
 
 export function ProjectOverview() {
   const { projectId } = useParams();
