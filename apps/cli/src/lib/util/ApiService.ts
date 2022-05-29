@@ -14,6 +14,7 @@ export class ApiService {
     const token = this.globalConfigService.getAccessToken();
     this.axiosInstance.interceptors.request.use(config => {
       config.headers.Authorization = `Bearer ${token}`;
+      return config;
     });
   }
 
