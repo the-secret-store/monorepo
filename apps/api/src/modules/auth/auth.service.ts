@@ -26,5 +26,7 @@ export class AuthService {
     return this.authTokenService.generateToken(user, UserAgent.CLI);
   }
 
-  validateToken = this.authTokenService.validateToken;
+  async validateToken(token: string) {
+    return this.authTokenService.validateToken(token);
+  }
 }
