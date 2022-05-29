@@ -11,9 +11,9 @@ import { AuthPayload } from './token.strategy';
 export class AuthTokenService {
   jwtConfig: AuthConfig['jwt'];
   constructor(
-    private jwtService: JwtService,
-    configService: ConfigService,
-    private readonly logger: Logger
+    private readonly logger: Logger,
+    private readonly jwtService: JwtService,
+    configService: ConfigService
   ) {
     this.jwtConfig = configService.get<AuthConfig>('auth').jwt;
   }
