@@ -28,7 +28,26 @@
     },
     "/auth/profile": {
       "get": {
-        "operationId": "AuthController_getProfile",
+        "operationId": "AuthController_",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/auth/validate-token": {
+      "get": {
+        "operationId": "AuthController_validateToken",
         "parameters": [],
         "responses": {
           "200": {
@@ -67,6 +86,25 @@
     "/user/generate-token": {
       "get": {
         "operationId": "UserController_redirect",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "operationId": "UserController_getUserProfile",
         "parameters": [],
         "responses": {
           "200": {
