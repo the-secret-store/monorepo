@@ -13,7 +13,7 @@ import {
   description: 'login to your account',
 })
 export class Login implements CommandRunner {
-  private readonly loggerService = new CliLoggerService('Login');
+  private readonly loggerService = new CliLoggerService('AuthService');
   constructor(
     private browserService: BrowserService,
     private readonly inquirer: InquirerService,
@@ -33,10 +33,9 @@ export class Login implements CommandRunner {
     this.loggerService.debug(token, 'Received');
 
     try {
-      await this.api.get(Requests.auth.VALIDATE_TOKEN, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await this.api.get(Requests.auth.VALIDATE_TOKEN, { data: { token } });
       await this.globalConfigService.setAccessToken(token);
+      this.loggerService.success('Login successful');
     } catch (error) {
       this.loggerService.error('Invalid token, please obtain a new token and paste it here');
     }
