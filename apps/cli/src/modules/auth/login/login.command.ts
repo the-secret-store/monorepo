@@ -1,11 +1,6 @@
 import { Command, CommandRunner, InquirerService, Option } from 'nest-commander';
 import { Requests } from '@the-secret-store/api-interfaces/constants';
-import {
-  ApiService,
-  BrowserService,
-  CliLoggerService,
-  GlobalConfigService,
-} from '../../../lib/services';
+import { ApiService, BrowserService, CliLoggerService, GlobalConfigService } from '$cli/services';
 
 @Command({
   name: 'login',

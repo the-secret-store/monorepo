@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ApiService, BrowserService, GlobalConfigService } from '../../lib/services';
+import { ApiService, BrowserService, GlobalConfigService } from '$cli/services';
 import { Login } from './login/login.command';
 import { LoginQuestions } from './login/login.questions';
 
