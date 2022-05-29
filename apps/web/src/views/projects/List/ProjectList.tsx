@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { New as NewIcon } from '@styled-icons/fluentui-system-filled/New';
+import { Requests } from '@the-secret-store/api-interfaces/constants';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Button, EmptyList, Loader, ProjectList } from '$web/components';
-import { Requests } from '$web/constants';
 import { useRequest } from '$web/hooks';
 import { ProjectListPageWrapper } from './project-list.page.style';
 

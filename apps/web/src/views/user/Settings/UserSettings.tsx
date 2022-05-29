@@ -3,10 +3,10 @@ import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
 import { Key2 as Key, Settings } from '@styled-icons/remix-line';
 import { Jsonwebtokens } from '@styled-icons/simple-icons/Jsonwebtokens';
+import { Requests } from '@the-secret-store/api-interfaces/constants';
 import { Button } from '$web/components';
 import { useRequest } from '$web/hooks';
 import { SettingsStyleWrapper } from './settings.style';
-import { Requests } from '$web/constants';
 
 export function UserSettings() {
   const request = useRequest();
