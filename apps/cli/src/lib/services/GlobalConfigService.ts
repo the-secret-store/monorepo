@@ -15,7 +15,7 @@ export class GlobalConfigService {
   }
 
   get(key: keyof Configurations) {
-    return this.config[key];
+    return typeof this.config === 'object' ? this.config[key] : undefined;
   }
 
   set(key: keyof Configurations, value: string | number) {
