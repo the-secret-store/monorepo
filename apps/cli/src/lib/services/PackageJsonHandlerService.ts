@@ -7,9 +7,9 @@ export class PackageJsonHandlerService {
   private packageJson: MinimalPackageJson;
 
   constructor() {
-    this.packageJson = JsonHelper.importJsonSync(
-      path.resolve(process.cwd(), 'package.json')
-    ) as MinimalPackageJson;
+    JsonHelper.readJson(path.resolve(process.cwd(), 'package.json')).then(
+      (pkgJsn: MinimalPackageJson) => (this.packageJson = pkgJsn)
+    );
   }
 
   getProjectId() {
