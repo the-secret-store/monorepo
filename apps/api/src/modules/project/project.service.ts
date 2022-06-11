@@ -70,7 +70,11 @@ export class ProjectService {
       ProjectAccessLevel.MEMBER
     );
 
-    return this.encryptionEngine.decryptValues(project.secrets);
+    return {
+      lastUpdatedBy: project.lastUpdatedBy,
+      updatedAt: project.updatedAt,
+      secrets: this.encryptionEngine.decryptValues(project.secrets),
+    };
   }
 
   /**
