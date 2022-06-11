@@ -54,6 +54,8 @@ export class ProjectService {
       ProjectAccessLevel.COLLABORATOR
     );
 
+    this.logger.debug(secrets, ProjectService.name);
+
     project.backup = project.secrets || {};
     project.secrets = this.encryptionEngine.encryptValues(secrets);
     project.lastUpdatedBy = userId;
@@ -69,6 +71,8 @@ export class ProjectService {
       projectId,
       ProjectAccessLevel.MEMBER
     );
+
+    this.logger.debug(project, ProjectService.name);
 
     return {
       lastUpdatedBy: project.lastUpdatedBy,
