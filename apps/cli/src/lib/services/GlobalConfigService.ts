@@ -11,7 +11,9 @@ export class GlobalConfigService {
   };
 
   constructor(private readonly logger: CliLoggerService = new CliLoggerService()) {
-    this.config = JsonHelper.importJsonSync(this.CONFIG_FILE_PATH, true) as Configurations;
+    JsonHelper.readJson(this.CONFIG_FILE_PATH, true).then(
+      (config: Configurations) => (this.config = config)
+    );
   }
 
   get(key: keyof Configurations) {
