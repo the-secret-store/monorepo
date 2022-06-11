@@ -3,7 +3,7 @@ import {
   ApiService,
   EnvHandlerService,
   GlobalConfigService,
-  PackageJsonHandlerService,
+  ProjectConfigService,
 } from '$cli/services';
 import { FetchSecrets } from './fetch-secrets/fetch-secrets.command';
 
@@ -11,7 +11,7 @@ import { FetchSecrets } from './fetch-secrets/fetch-secrets.command';
   imports: [],
   providers: [
     ApiService,
-    PackageJsonHandlerService,
+    ProjectConfigService,
     EnvHandlerService,
     GlobalConfigService,
     FetchSecrets,

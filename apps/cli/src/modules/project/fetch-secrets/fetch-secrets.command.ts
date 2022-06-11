@@ -5,7 +5,7 @@ import {
   ApiService,
   CliLoggerService,
   EnvHandlerService,
-  PackageJsonHandlerService,
+  ProjectConfigService,
 } from '$cli/services';
 import { ClientError } from '$cli/errors';
 
@@ -19,14 +19,14 @@ export class FetchSecrets implements CommandRunner {
 
   constructor(
     private readonly api: ApiService,
-    private readonly packageJson: PackageJsonHandlerService,
+    private readonly projectConfig: ProjectConfigService,
     private readonly envHandler: EnvHandlerService
   ) {
     this.logger = new CliLoggerService(FetchSecrets.name);
   }
 
   async run(): Promise<void> {
-    const projectId = this.packageJson.getProjectId();
+    const projectId = this.projectConfig.getProjectId();
 
     if (!projectId) throw new ClientError('Not a Secret Store project');
 

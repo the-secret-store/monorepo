@@ -19,14 +19,14 @@ export class JsonHelper {
   /**
    * Read a JSON Representation file
    */
-  static async readJson(filePath: string, createIfNotFound = false) {
+  static readJson(filePath: string, createIfNotFound = true) {
     if (createIfNotFound && !fs.existsSync(filePath)) {
       console.debug(`${filePath} not found, creating an empty config file...`);
       fs.writeFileSync(filePath, '{}');
       return {};
     }
 
-    return fsp.readFile(filePath, 'utf8').then(data => JSON.parse(data) as Record<string, unknown>);
+    return JSON.parse(fs.readFileSync(filePath, 'utf8')) as Record<string, unknown>;
   }
 
   /**
