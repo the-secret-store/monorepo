@@ -43,6 +43,21 @@ export class ProjectService {
     return project;
   }
 
+  async getProjectDetails(userId: ObjectIdType, projectId: ObjectIdType) {
+    const project = await this.checkAccessAndFindProject(
+      userId,
+      projectId,
+      ProjectAccessLevel.MEMBER
+    );
+
+    this.logger.debug(project, ProjectService.name);
+
+    return {
+      ...project,
+      secrets: this.encryptionEngine.decryptValues(project.secrets),
+    };
+  }
+
   async updateSecrets(
     userId: ObjectIdType,
     projectId: ObjectIdType,

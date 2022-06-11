@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import { Eye, EyeSlash } from '@styled-icons/bootstrap';
 import { LockShield } from '@styled-icons/fluentui-system-regular';
@@ -12,24 +12,22 @@ import { useRequest } from '$web/hooks';
 import { ProjectOverviewStyleWrapper } from './project-overview.style';
 
 export function ProjectOverview() {
-  const { projectId } = useParams();
-  const [project, setProject] = useState(useLocation().state as IProject);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
-  const [showValues, setShowValues] = useState(false);
   const request = useRequest();
+  const { projectId } = useParams();
+  const [project, setProject] = useState<IProject>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [showValues, setShowValues] = useState(false);
 
   const getProjectInfo = useCallback(async () => {
-    if (project) return;
     if (!projectId) navigate('/projects');
 
-    console.debug('Project state not found, sending api request...');
     setIsLoading(true);
     const info = await (
       await request.get(Requests.projects.GET_PROJECT_INFO(projectId!))
     ).data.result;
     setProject(info);
-  }, [navigate, project, projectId, request]);
+  }, [navigate, projectId, request]);
 
   useEffect(() => {
     getProjectInfo().catch(console.error);
