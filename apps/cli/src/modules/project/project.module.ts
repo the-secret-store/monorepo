@@ -5,7 +5,7 @@ import {
   GlobalConfigService,
   ProjectConfigService,
 } from '$cli/services';
-import { FetchSecrets } from './fetch-secrets/fetch-secrets.command';
+import { FetchSecrets, PostSecrets } from './commands';
 
 @Module({
   imports: [],
@@ -15,6 +15,7 @@ import { FetchSecrets } from './fetch-secrets/fetch-secrets.command';
     EnvHandlerService,
     GlobalConfigService,
     FetchSecrets,
+    PostSecrets,
   ],
   exports: [],
 })

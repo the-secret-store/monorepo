@@ -4,7 +4,7 @@
     {
       "name": "Launch CLI",
       "program": "${workspaceFolder}/dist/apps/cli/main.js",
-      "args": ["fetch"],
+      "args": ["post"],
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
