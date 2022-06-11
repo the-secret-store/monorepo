@@ -31,9 +31,8 @@ export class FetchSecrets implements CommandRunner {
     if (!projectId) throw new ClientError('Not a Secret Store project');
 
     try {
-      const { secrets, lastUpdatedBy, updatedAt } = (await (
-        await this.api.get(Requests.projects.GET_PROJECT_SECRETS(projectId))
-      ).data) as IProject;
+      const response = await this.api.get(Requests.projects.GET_PROJECT_SECRETS(projectId));
+      const { secrets, lastUpdatedBy, updatedAt } = response.data.result as IProject;
       await this.envHandler.exportEnvFromObject(secrets);
 
       this.logger.info(`Updated by ${lastUpdatedBy} on ${updatedAt}`); // todo: use timeago
