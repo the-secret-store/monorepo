@@ -2,6 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch CLI",
+      "program": "${workspaceFolder}/dist/apps/cli/main.js",
+      "args": ["fetch"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+    {
       "name": "Launch API in debug mode",
       "request": "launch",
       "runtimeArgs": ["start", "api"],
