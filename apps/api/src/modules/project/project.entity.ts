@@ -55,6 +55,7 @@ export class Project implements IProject {
   @BeforeInsert()
   protected beforeInsert() {
     if (!this.owner) this.owner = this.createdBy;
+    if (!this.lastUpdatedBy) this.lastUpdatedBy = this.createdBy;
     if (!this.collaborators) this.collaborators = [];
     if (!this.members) this.members = [];
     if (!this.secrets) this.secrets = {};
