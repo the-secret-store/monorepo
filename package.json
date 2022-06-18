@@ -9,6 +9,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
+    "dev:cli": "nx build cli --watch",
     "format": "prettier '**/*.{ts,tsx,json,md,html,css}' --write",
     "lint": "eslint",
     "lint:fix": "npm run lint -- --fix",

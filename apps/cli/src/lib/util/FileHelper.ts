@@ -6,7 +6,7 @@ export class FileHelper {
    * Parses a JSON file from Equals representation of Key-Value pair
    */
   static async parseJsonFromEqualsRepresentationFile(filePath: string) {
-    let data: Record<string, string>;
+    const data: Record<string, string> = {};
 
     const fileStream = fs.createReadStream(filePath);
 

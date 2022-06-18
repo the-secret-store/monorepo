@@ -11,11 +11,11 @@ export class GlobalConfigService {
   };
 
   constructor(private readonly logger: CliLoggerService = new CliLoggerService()) {
-    this.config = JsonHelper.importJsonSync(this.CONFIG_FILE_PATH, true) as Configurations;
+    this.config = JsonHelper.readJson(this.CONFIG_FILE_PATH, true) as unknown as Configurations;
   }
 
   get(key: keyof Configurations) {
-    return this.config[key];
+    return typeof this.config === 'object' ? this.config[key] : undefined;
   }
 
   set(key: keyof Configurations, value: string | number) {

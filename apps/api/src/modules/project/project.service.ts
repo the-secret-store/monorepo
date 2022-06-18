@@ -43,6 +43,21 @@ export class ProjectService {
     return project;
   }
 
+  async getProjectDetails(userId: ObjectIdType, projectId: ObjectIdType) {
+    const project = await this.checkAccessAndFindProject(
+      userId,
+      projectId,
+      ProjectAccessLevel.MEMBER
+    );
+
+    this.logger.debug(project, ProjectService.name);
+
+    return {
+      ...project,
+      secrets: this.encryptionEngine.decryptValues(project.secrets),
+    };
+  }
+
   async updateSecrets(
     userId: ObjectIdType,
     projectId: ObjectIdType,
@@ -53,6 +68,8 @@ export class ProjectService {
       projectId,
       ProjectAccessLevel.COLLABORATOR
     );
+
+    this.logger.debug(secrets, ProjectService.name);
 
     project.backup = project.secrets || {};
     project.secrets = this.encryptionEngine.encryptValues(secrets);
@@ -70,7 +87,13 @@ export class ProjectService {
       ProjectAccessLevel.MEMBER
     );
 
-    return this.encryptionEngine.decryptValues(project.secrets);
+    this.logger.debug(project, ProjectService.name);
+
+    return {
+      lastUpdatedBy: project.lastUpdatedBy,
+      updatedAt: project.updatedAt,
+      secrets: this.encryptionEngine.decryptValues(project.secrets),
+    };
   }
 
   /**

@@ -17,11 +17,24 @@ export class JsonHelper {
   }
 
   /**
+   * Read a JSON Representation file
+   */
+  static readJson(filePath: string, createIfNotFound = true) {
+    if (createIfNotFound && !fs.existsSync(filePath)) {
+      console.debug(`${filePath} not found, creating an empty config file...`);
+      fs.writeFileSync(filePath, '{}');
+      return {};
+    }
+
+    return JSON.parse(fs.readFileSync(filePath, 'utf8')) as Record<string, unknown>;
+  }
+
+  /**
    * Imports a JSON file synchronously
    */
   static importJsonSync(filePath: string, createIfNotFound = false) {
     if (createIfNotFound && !fs.existsSync(filePath)) {
-      console.debug('Config file not found, creating an empty config file...');
+      console.debug(`${filePath} not found, creating an empty config file...`);
       fs.writeFileSync(filePath, '{}');
     }
 
