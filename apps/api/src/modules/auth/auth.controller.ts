@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Redirect } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Redirect } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Deprecated } from '@the-secret-store/util';
 import { docTags } from '../../constants/api-tags';
@@ -28,8 +28,12 @@ export class AuthController {
 
   @Get('validate-token')
   async validateToken(@Body('token') token: string) {
-    await this.authService.validateToken(token);
-    return { message: 'Token is valid' };
+    try {
+      await this.authService.validateToken(token);
+      return { message: 'Token is valid' };
+    } catch (error) {
+      throw new BadRequestException('Invalid token');
+    }
   }
 
   @Get('generate-token')
