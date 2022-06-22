@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import { Eye, EyeSlash } from '@styled-icons/bootstrap';
 import { LockShield } from '@styled-icons/fluentui-system-regular';
-import { Braces, Save, Settings } from '@styled-icons/remix-line';
+import { Braces, Settings } from '@styled-icons/remix-line';
 import { IProject } from '@the-secret-store/api-interfaces/entities';
 import { Requests } from '@the-secret-store/api-interfaces/constants';
 import { Error404 } from '$web/base/error/404';
@@ -84,10 +84,6 @@ export function ProjectOverview() {
 
             <div className='actions'>
               <div className='left'>
-                <Button>
-                  <Save size={20} />
-                  Save
-                </Button>
                 <Button
                   link='./show-secrets-as-json'
                   state={{ secrets: project.secrets, name: project.name }}
