@@ -13,7 +13,7 @@ import { JsonHelper } from '$cli/util';
 @Command({
   name: 'post',
   options: { isDefault: false },
-  description: 'Fetch secrets from the secret store and update local copy',
+  description: 'Update the central copy with the local copy',
 })
 export class PostSecrets implements CommandRunner {
   private logger: CliLoggerService;
